@@ -23,6 +23,12 @@
   position: relative;
   font-size: 18px;
 }
+a:link{
+  color: white;
+}
+a:visited{
+  color: white;
+}
 .tag_input {
 	height: 30px;
 	width: 300px;
