@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/minecraftia" type="text/css"/>
+    <link rel="stylesheet" media="screen" type="text/css" href="{{ url_for('static',filename='Styles/homepagestyles.css') }}">
+    <link rel="stylesheet" media="screen" type="text/css" href="{{ url_for('static',filename='Styles/clashdatastyles.css') }}">
+    <link rel="icon" href="{{ url_for('static',filename='Images/DMGDevLogo.png') }}">
+    <title>Ladder Data</title>
+  </head>
+  <body style = "background-color: #222222">
+    <center>
+      <div id="maintitle">
+        <h1>Ladder Data</h1>
+      </div>
+      <div id="clashroyaletitle" style = "right: 0%">
+        <h2 style = "display: inline;">Player Name: </h2> <h2 style = "color: #4287f5; display: inline;">{{ name }}</h2>
+        <br><br>
+        <h2 style = "display: inline;">Player Tag: </h2> <h2 style = "color: #4287f5; display: inline;">{{ tag }}</h2>
+        <br><br>
+        <h2 style = "display: inline;">Average Ladder Win %: </h2> <h2 style = "color: #4287f5; display: inline;">{{ average_win_rate }}</h2>
+        <br><br>
+        <h2 style = "display: inline;">Average Card Level Difference: </h2> <h2 style = "color: #4287f5; display: inline;">{{ average_level_difference }}</h2>
+        <br><br>
+        <table>
+          <tr>
+            <th>Opponent King<br>Tower Level</th>
+            <th>Win %</th>
+          </tr>
+          <tr>
+            <td><div class = "container"><img src="{{ url_for('static',filename='Images/ExpLevel.png') }}" alt="Exp Logo" width="100" height="100"><div class = "centered">1</div></div></td>
+            <td style = "color: #4287F5; font-family: ClashRoyale;">{{ win_rates[0] }}</td>
+          </tr>
+          <tr>
+            <td><div class = "container"><img src="{{ url_for('static',filename='Images/ExpLevel.png') }}" alt="Exp Logo" width="100" height="100"><div class = "centered">2</div></div></td>
+            <td style = "color: #4287F5; font-family: ClashRoyale;">{{ win_rates[1] }}</td>
+          </tr>
+          <tr>
+            <td><div class = "container"><img src="{{ url_for('static',filename='Images/ExpLevel.png') }}" alt="Exp Logo" width="100" height="100"><div class = "centered">3</div></div></td>
+            <td style = "color: #4287F5; font-family: ClashRoyale;">{{ win_rates[2] }}</td>
+          </tr>
+          <tr>
+            <td><div class = "container"><img src="{{ url_for('static',filename='Images/ExpLevel.png') }}" alt="Exp Logo" width="100" height="100"><div class = "centered">4</div></div></td>
+            <td style = "color: #4287F5; font-family: ClashRoyale;">{{ win_rates[3] }}</td>
+          </tr>
+          <tr>
+            <td><div class = "container"><img src="{{ url_for('static',filename='Images/ExpLevel.png') }}" alt="Exp Logo" width="100" height="100"><div class = "centered">5</div></div></td>
+            <td style = "color: #4287F5; font-family: ClashRoyale;">{{ win_rates[4] }}</td>
+          </tr>
+          <tr>
+            <td><div class = "container"><img src="{{ url_for('static',filename='Images/ExpLevel.png') }}" alt="Exp Logo" width="100" height="100"><div class = "centered">6</div></div></td>
+            <td style = "color: #4287F5; font-family: ClashRoyale;">{{ win_rates[5] }}</td>
+          </tr>
+          <tr>
+            <td><div class = "container"><img src="{{ url_for('static',filename='Images/ExpLevel.png') }}" alt="Exp Logo" width="100" height="100"><div class = "centered">7</div></div></td>
+            <td style = "color: #4287F5; font-family: ClashRoyale;">{{ win_rates[6] }}</td>
+          </tr>
+          <tr>
+            <td><div class = "container"><img src="{{ url_for('static',filename='Images/ExpLevel.png') }}" alt="Exp Logo" width="100" height="100"><div class = "centered">8</div></div></td>
+            <td style = "color: #4287F5; font-family: ClashRoyale;">{{ win_rates[7] }}</td>
+          </tr>
+          <tr>
+            <td><div class = "container"><img src="{{ url_for('static',filename='Images/ExpLevel.png') }}" alt="Exp Logo" width="100" height="100"><div class = "centered">9</div></div></td>
+            <td style = "color: #4287F5; font-family: ClashRoyale;">{{ win_rates[8] }}</td>
+          </tr>
+          <tr>
+            <td><div class = "container"><img src="{{ url_for('static',filename='Images/ExpLevel.png') }}" alt="Exp Logo" width="100" height="100"><div class = "centered">10</div></div></td>
+            <td style = "color: #4287F5; font-family: ClashRoyale;">{{ win_rates[9] }}</td>
+          </tr>
+          <tr>
+            <td><div class = "container"><img src="{{ url_for('static',filename='Images/ExpLevel.png') }}" alt="Exp Logo" width="100" height="100"><div class = "centered">11</div></div></td>
+            <td style = "color: #4287F5; font-family: ClashRoyale;">{{ win_rates[10] }}</td>
+          </tr>
+          <tr>
+            <td><div class = "container"><img src="{{ url_for('static',filename='Images/ExpLevel.png') }}" alt="Exp Logo" width="100" height="100"><div class = "centered">12</div></div></td>
+            <td style = "color: #4287F5; font-family: ClashRoyale;">{{ win_rates[11] }}</td>
+          </tr>
+          <tr>
+            <td><div class = "container"><img src="{{ url_for('static',filename='Images/ExpLevel.png') }}" alt="Exp Logo" width="100" height="100"><div class = "centered">13</div></div></td>
+            <td style = "color: #4287F5; font-family: ClashRoyale;">{{ win_rates[12] }}</td>
+          </tr>
+        </table>
+      </div>
+    </center>
+  </body>
+</html>

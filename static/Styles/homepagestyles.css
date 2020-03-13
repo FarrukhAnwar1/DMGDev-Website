@@ -1,0 +1,51 @@
+@font-face {
+  font-family: ClashRoyale;
+  src: url('ClashRoyale.ttf') format("truetype");
+  font-weight:
+}
+#maintitle {
+  font-family: 'MinecraftiaRegular';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 30px;
+  color: white;
+}
+#clashroyaletitle {
+  color: #e8b923;
+  position: relative;
+  right: 13.5%;
+  font-size: 30px;
+  font-family: ClashRoyale;
+}
+#clashroyaletext{
+  font-family: ClashRoyale;
+  color: #4287f5;
+  position: relative;
+  font-size: 18px;
+}
+.tag_input {
+	height: 30px;
+	width: 300px;
+	font-size: 25px;
+  font-family: ClashRoyale;
+}
+.clear_button {
+	height: 36px;
+	width: 70px;
+	font-size: 16px;
+	position: relative;
+  border: none;
+	bottom: 2px;
+  color: white;
+  font-family: ClashRoyale;
+  background-color: #0E0E0E;
+}
+.try_it_out_button {
+	height: 50px;
+	width: 378px;
+  border: none;
+	font-size: 25px;
+  color: white;
+  font-family: ClashRoyale;
+  background-color: #0E0E0E;
+}
