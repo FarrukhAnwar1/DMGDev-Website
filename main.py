@@ -28,7 +28,10 @@ def win_api():
             data_to_return = main(player_tag)
             return jsonify(data_to_return)
         except Exception as e:
-            return str(e)
+            return "An error occurred while retrieving data. Check to see if the player tag was entered correctly. If "\
+                   "that doesn't work, open an issue on the Source Code GitHub issue page (" \
+                   "https://github.com/DMG1Plays/DMGDev-API-Endpoints/issues) to see if the server admin can fix the " \
+                   "issue."
     elif html:
         try:
             data_to_return = main(player_tag)
@@ -39,8 +42,8 @@ def win_api():
             win_rates = data_to_return["win_percentages"]
             return render_template("clashdatapage.html", name = name, tag = tag, average_win_rate = average_win_rate,
                                    average_level_difference = average_level_difference, win_rates = win_rates)
-        except Exception as e:
-            return str(e)
+        except Exception as _:
+            return render_template("errorpage.html")
 
 
 if __name__ == "__main__":
