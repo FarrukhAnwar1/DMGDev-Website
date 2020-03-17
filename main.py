@@ -40,8 +40,10 @@ def win_api():
             average_win_rate = data_to_return["average_ladder_win_percentage"]
             average_level_difference = data_to_return["average_level_difference"]
             win_rates = data_to_return["win_percentages"]
+            match_percentages = data_to_return["match_percentages"]
             return render_template("clashdatapage.html", name = name, tag = tag, average_win_rate = average_win_rate,
-                                   average_level_difference = average_level_difference, win_rates = win_rates)
+                                   average_level_difference = average_level_difference, win_rates = win_rates,
+                                   match_percentages = match_percentages)
         except Exception as _:
             return render_template("errorpage.html")
 

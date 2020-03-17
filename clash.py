@@ -52,6 +52,13 @@ def overall_win_percentage(player_battles):
     return percentage
 
 
+def find_match_percentages(player_matches, total_matches):
+    matches = player_matches
+    for i in range(len(matches)):
+        matches[i] = 100 * round(matches[i] / total_matches, 2)
+    return matches
+
+
 def main(provided_player_tag):
     with open("mysite/api_token.txt") as f:
         api_token = f.read().rstrip("\n")
@@ -76,14 +83,18 @@ def main(provided_player_tag):
     opponent_levels_list = []
     player_levels_list = []
     ladder_battles = []
+    match_percentages = [0] * 13
+    total_battles = 0
 
     found_name = False
     player_name = None
 
     for battle in battles:
         if battle["type"] == "PvP":
+            total_battles += 1
             opponent_tag = battle["opponent"][0]["tag"][1:]
             opponent_level = find_opponent_level(opponent_tag, headers)
+            match_percentages[opponent_level - 1] += 1
 
             trophy_change = battle["team"][0]["trophyChange"]
 
@@ -114,13 +125,15 @@ def main(provided_player_tag):
 
     ladder_win_percentage = overall_win_percentage(ladder_battles)
     average_difference = find_average_difference(player_levels_list, opponent_levels_list)
+    match_percentages = find_match_percentages(match_percentages, total_battles)
 
     data_to_return = {
         "player_name": player_name,
         "player_tag": provided_player_tag,
         "win_percentages": win_percentages,
         "average_ladder_win_percentage": ladder_win_percentage,
-        "average_level_difference": average_difference
+        "average_level_difference": average_difference,
+        "match_percentages": match_percentages
     }
 
     return data_to_return
