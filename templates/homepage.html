@@ -19,11 +19,7 @@
         <h2>Clash Royale</h2>
       </div>
       <div id="clashroyaletext">
-        <h3 style="font-size: 30px">Endpoint for Ladder Battles (JSON):</h3>
-        <h3 style="color: white">/api/clash/win_percentages?player_tag={player_tag_without_#}</h3>
-        <h3 style="font-size: 16px; color: #e8b923;">* type=html can be used as an additional parameter in
-          <br>order to receive an HTML formatted webpage for viewing pleasure</h3>
-        <h3 style="font-size: 30px">Try it Out:</h3>
+        <h3 style="font-size: 30px">Ladder Battles:</h3>
         <form onsubmit = "return false">
 			    <span style = "color: white">Enter Player Tag (no #):</span>
 			    <br><br>
@@ -31,8 +27,8 @@
 			    <br><br>
           <span style = "color: white">Response Type:</span>
           <select id = "response_type" name = "response_type">
-            <option value="json">JSON</option>
             <option value="html">HTML</option>
+            <option value="json">JSON</option>
           </select>
           <br><br>
 			    <input type = "submit" value = "Try it Out" onclick="search_player_data()" width="100" class = "try_it_out_button">

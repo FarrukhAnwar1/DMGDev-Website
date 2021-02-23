@@ -132,7 +132,7 @@ def main(provided_player_tag):
         "player_tag": provided_player_tag,
         "win_percentages": win_percentages,
         "average_ladder_win_percentage": ladder_win_percentage,
-        "average_level_difference": average_difference,
+        "average_level_difference": -average_difference,
         "match_percentages": match_percentages
     }
 
