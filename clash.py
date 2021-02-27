@@ -1,6 +1,5 @@
 import requests
 import json
-from colour import Color
 
 
 def find_opponent_level(tag, request_headers):
@@ -128,8 +127,7 @@ def main(provided_player_tag):
     average_difference = find_average_difference(player_levels_list, opponent_levels_list)
     match_numbers = match_percentages.copy()
     match_percentages = find_match_percentages(match_percentages, total_battles)
-    red = Color("#ff0000")
-    colors = list(red.range_to(Color("#10de2e"), 100))
+    colors = ['red', '#ff0600', '#fe0b00', '#fe1101', '#fe1701', '#fd1c01', '#fd2201', '#fd2701', '#fc2d01', '#fc3202', '#fc3802', '#fb3d02', '#fb4302', '#fb4802', '#fa4e02', '#fa5303', '#fa5803', '#f95e03', '#f96303', '#f86803', '#f86d03', '#f87304', '#f77804', '#f77d04', '#f78204', '#f68704', '#f68d04', '#f69205', '#f59705', '#f59c05', '#f5a105', '#f4a605', '#f4ab05', '#f4b006', '#f3b506', '#f3ba06', '#f3bf06', '#f2c406', '#f2c806', '#f2cd07', '#f1d207', '#f1d707', '#f1dc07', '#f0e107', '#f0e507', '#f0ea08', '#efef08', '#ebef08', '#e5ef08', '#e0ee08', '#dbee08', '#d6ee09', '#d0ed09', '#cbed09', '#c6ed09', '#c1ec09', '#bcec09', '#b6ec09', '#b1eb0a', '#aceb0a', '#a7eb0a', '#a2ea0a', '#9dea0a', '#98ea0a', '#93e90b', '#8ee90b', '#89e90b', '#84e80b', '#7fe80b', '#7be80b', '#76e70c', '#71e70c', '#6ce70c', '#67e60c', '#63e60c', '#5ee60c', '#59e50c', '#54e50d', '#50e50d', '#4be40d', '#46e40d', '#42e40d', '#3de40d', '#39e30e', '#34e30e', '#2fe30e', '#2be20e', '#26e20e', '#22e20e', '#1de10e', '#19e10f', '#15e10f', '#10e00f', '#0fe012', '#0fe017', '#0fdf1c', '#10df20', '#10df25', '#10de29', '#10de2e']
 
     data_to_return = {
         "player_name": player_name,
