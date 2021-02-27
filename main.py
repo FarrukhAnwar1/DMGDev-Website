@@ -41,10 +41,13 @@ def win_api():
             average_level_difference = data_to_return["average_level_difference"]
             win_rates = data_to_return["win_percentages"]
             match_percentages = data_to_return["match_percentages"]
+            match_numbers = data_to_return["match_numbers"]
+            colors = data_to_return["colors"]
             return render_template("clashdatapage.html", name = name, tag = tag, average_win_rate = average_win_rate,
                                    average_level_difference = average_level_difference, win_rates = win_rates,
-                                   match_percentages = match_percentages)
-        except Exception as _:
+                                   match_percentages = match_percentages, match_numbers = match_numbers, colors = colors)
+        except Exception as e:
+            print(e)
             return render_template("errorpage.html")
 
 

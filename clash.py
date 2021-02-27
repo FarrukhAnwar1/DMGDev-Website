@@ -1,10 +1,11 @@
 import requests
 import json
+from colour import Color
 
 
 def find_opponent_level(tag, request_headers):
     player_url = f"https://api.clashroyale.com/v1/players/%23{tag}"
-    opponent_response = requests.request("GET", player_url, headers = request_headers)
+    opponent_response = requests.request("GET", player_url, headers=request_headers)
     opponent = json.loads(opponent_response.content)
     found_opponent_level = opponent["expLevel"]
     return found_opponent_level
@@ -55,12 +56,12 @@ def overall_win_percentage(player_battles):
 def find_match_percentages(player_matches, total_matches):
     matches = player_matches
     for i in range(len(matches)):
-        matches[i] = 100 * round(matches[i] / total_matches, 2)
+        matches[i] = round((matches[i] / total_matches * 100), 2)
     return matches
 
 
 def main(provided_player_tag):
-    with open("mysite/api_token.txt") as f:
+    with open("api_token.txt") as f:
         api_token = f.read().rstrip("\n")
 
     # DMG - PGLGY9QJ
@@ -125,7 +126,10 @@ def main(provided_player_tag):
 
     ladder_win_percentage = overall_win_percentage(ladder_battles)
     average_difference = find_average_difference(player_levels_list, opponent_levels_list)
+    match_numbers = match_percentages.copy()
     match_percentages = find_match_percentages(match_percentages, total_battles)
+    red = Color("#ff0000")
+    colors = list(red.range_to(Color("#10de2e"), 100))
 
     data_to_return = {
         "player_name": player_name,
@@ -133,7 +137,9 @@ def main(provided_player_tag):
         "win_percentages": win_percentages,
         "average_ladder_win_percentage": ladder_win_percentage,
         "average_level_difference": -average_difference,
-        "match_percentages": match_percentages
+        "match_percentages": match_percentages,
+        "match_numbers": match_numbers,
+        "colors": colors
     }
 
     return data_to_return
