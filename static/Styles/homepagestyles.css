@@ -1,57 +1,71 @@
 @font-face {
-  font-family: ClashRoyale;
-  src: url('ClashRoyale.ttf') format("truetype");
-  font-weight:
+    font-family: ClashRoyale;
+    src: url('ClashRoyale.ttf') format("truetype");
+    font-weight:
 }
 #maintitle {
-  font-family: 'MinecraftiaRegular';
-  font-weight: normal;
-  font-style: normal;
-  font-size: 30px;
-  color: white;
+    font-family: 'MinecraftiaRegular';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 30px;
+    color: white;
 }
 #clashroyaletitle {
-  color: #e8b923;
-  position: relative;
-  right: 13.5%;
-  font-size: 30px;
-  font-family: ClashRoyale;
+    color: #e8b923;
+    position: relative;
+    right: 13.5%;
+    font-size: 30px;
+    font-family: ClashRoyale;
 }
 #clashroyaletext{
-  font-family: ClashRoyale;
-  color: #4287f5;
-  position: relative;
-  font-size: 18px;
+    font-family: ClashRoyale;
+    color: #4287f5;
+    position: relative;
+    font-size: 18px;
 }
 a:link{
-  color: white;
+    color: white;
 }
 a:visited{
-  color: white;
+    color: white;
 }
 .tag_input {
 	height: 30px;
 	width: 300px;
 	font-size: 25px;
-  font-family: ClashRoyale;
+    font-family: ClashRoyale;
 }
 .clear_button {
 	height: 36px;
 	width: 70px;
 	font-size: 16px;
 	position: relative;
-  border: none;
+    border: none;
 	bottom: 2px;
-  color: white;
-  font-family: ClashRoyale;
-  background-color: #0E0E0E;
+    color: white;
+    font-family: ClashRoyale;
+    background-color: #0E0E0E;
 }
 .try_it_out_button {
 	height: 50px;
 	width: 378px;
-  border: none;
+    border: none;
 	font-size: 25px;
-  color: white;
-  font-family: ClashRoyale;
-  background-color: #0E0E0E;
+    color: white;
+    font-family: ClashRoyale;
+    background-color: #0E0E0E;
+}
+
+#mctitle {
+    color: #74b841;
+    position: relative;
+    right: 17%;
+    font-size: 30px;
+    font-family: MinecraftiaRegular;
+}
+
+#mctext {
+    color: white;
+    font-size: 30px;
+    font-family: MinecraftiaRegular;
 }
