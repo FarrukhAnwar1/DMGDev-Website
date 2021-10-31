@@ -27,7 +27,8 @@ def win_percentage(player_battles, level):
 def find_card_levels(cards):
     total_card_levels = 0
     for card in cards:
-        total_card_levels += card["level"] + (13 - card["maxLevel"])
+        print(card, card["level"] + 14 - card["maxLevel"])
+        total_card_levels += card["level"] + (14 - card["maxLevel"])
     return total_card_levels
 
 
@@ -83,7 +84,7 @@ def main(provided_player_tag):
     opponent_levels_list = []
     player_levels_list = []
     ladder_battles = []
-    match_percentages = [0] * 13
+    match_percentages = [0] * 14
     total_battles = 0
 
     found_name = False
@@ -120,7 +121,7 @@ def main(provided_player_tag):
         return "No recent ladder battles found"
 
     win_percentages = []
-    for i in range(13):
+    for i in range(14):
         win_percentages.append(win_percentage(ladder_battles, i + 1))
 
     ladder_win_percentage = overall_win_percentage(ladder_battles)
