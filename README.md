@@ -21,7 +21,7 @@ Website Homepage: https://dmg1plays.pythonanywhere.com/
         * _Match and Win Percentage Table_
     * #### JSON Version: type=json
       * Returns JSON formmated data that includes:
-        * **Trophy Road Data**
+        **Trophy Road Data**
          * _Player Name_ (**string**)
          * _Player Tag_ (**string**)
          * _Average Ladder Win %_ (**float**)
@@ -30,6 +30,6 @@ Website Homepage: https://dmg1plays.pythonanywhere.com/
          * _Win Percentages against each King Tower level_ (**list**)
          * _Total Match Numbers against each King Tower level_ (**list**)
          * _Color Gradient from Red to Lime Green_ (**list**)
-        * **Path of Legends Data**
+        **Path of Legends Data**
          * _Average Win %_ (**float**)
          * _Average Card Level Difference_ (**float**) 
