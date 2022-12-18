@@ -8,6 +8,7 @@ Website Homepage: https://dmg1plays.pythonanywhere.com/
   * ### Ladder Battles Endpoint
 
     * _**/api/clash/win\_percentages**?**type**={Response Type}&**player\_tag**={Player Tag}_
+      * If _**type**_ is omitted, then website automatically defaults to return JSON data
 
     * #### HTML Version: type=html
       * Shows an HTML formatted page that includes:
