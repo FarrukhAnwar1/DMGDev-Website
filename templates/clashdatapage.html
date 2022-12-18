@@ -18,7 +18,7 @@
         // For match percentage pie chart
         var data = google.visualization.arrayToDataTable([
           ['King Level', 'Match Percentage'],
-          {% for i in range(13, -1, -1) %}
+          {% for i in range(49, -1, -1) %}
             ['{{ i + 1 }}', {{ match_numbers[i] }}],
           {% endfor %}
         ]);
@@ -51,7 +51,7 @@
         // For win percentage bar chart
         var data = google.visualization.arrayToDataTable([
           ['King Level', 'Win Percentage', { role: 'style' }, {role: "annotation"}],
-          {% for i in range(14) %}
+          {% for i in range(50) %}
             {% if win_rates[i] != "N/A" %}
               ["{{ i + 1 }}", {{ win_rates[i] }}, "{{ colors[(win_rates[i]) | int ] }}", {{ win_rates[i] }}],
             {% endif %}
@@ -126,7 +126,7 @@
             <th>Win %</th>
             <th>Match %</th>
           </tr>
-          {% for i in range(14) %}
+          {% for i in range(50) %}
             {% if win_rates[i] != "N/A" %}
               <tr>
                 <td><div class = "container"><img src="{{ url_for('static',filename='Images/ExpLevel.png') }}" alt="Exp Logo" width="100" height="100"><div class = "centered">{{ i + 1 }}</div></div></td>

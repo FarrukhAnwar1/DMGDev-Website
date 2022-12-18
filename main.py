@@ -11,7 +11,7 @@ def home():
     return render_template("homepage.html")
 
 
-# Test Key: http://127.0.0.1:5000/api/clash/win_percentages?player_tag=PGLGY9QJ
+# Test Site: http://127.0.0.1:5000/api/clash/win_percentages?player_tag=PGLGY9QJ
 @app.route("/api/clash/win_percentages", methods=["GET"])
 def win_api():
     html = False
@@ -28,6 +28,7 @@ def win_api():
             data_to_return = main(player_tag)
             return jsonify(data_to_return)
         except Exception as e:
+            print(e)
             return "An error occurred while retrieving data. Check to see if the player tag was entered correctly. If "\
                    "that doesn't work, open an issue on the Source Code GitHub issue page (" \
                    "https://github.com/DMG1Plays/DMGDev-API-Endpoints/issues) to see if the server admin can fix the " \
