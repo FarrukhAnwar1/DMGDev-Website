@@ -36,17 +36,7 @@ def win_api():
     elif html:
         try:
             data_to_return = main(player_tag)
-            name = data_to_return["player_name"]
-            tag = data_to_return["player_tag"]
-            average_win_rate = data_to_return["average_ladder_win_percentage"]
-            average_level_difference = data_to_return["average_level_difference"]
-            win_rates = data_to_return["win_percentages"]
-            match_percentages = data_to_return["match_percentages"]
-            match_numbers = data_to_return["match_numbers"]
-            colors = data_to_return["colors"]
-            return render_template("clashdatapage.html", name = name, tag = tag, average_win_rate = average_win_rate,
-                                   average_level_difference = average_level_difference, win_rates = win_rates,
-                                   match_percentages = match_percentages, match_numbers = match_numbers, colors = colors)
+            return render_template("clashdatapage.html", data=data_to_return)
         except Exception as e:
             print(e)
             return render_template("errorpage.html")

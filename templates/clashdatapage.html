@@ -2,12 +2,15 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/minecraftia" type="text/css"/>
     <link rel="stylesheet" media="screen" type="text/css" href="{{ url_for('static',filename='Styles/homepagestyles.css') }}">
     <link rel="stylesheet" media="screen" type="text/css" href="{{ url_for('static',filename='Styles/clashdatastyles.css') }}">
     <link rel="icon" href="{{ url_for('static',filename='Images/DMGDevLogo.png') }}">
     <title>Ladder Data</title>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static',filename='Scripts/clashdatapagescript.js') }}"></script>
     <script type="text/javascript">
 
       google.charts.load('current', {'packages':['corechart']});
@@ -19,7 +22,7 @@
         var data = google.visualization.arrayToDataTable([
           ['King Level', 'Match Percentage'],
           {% for i in range(49, -1, -1) %}
-            ['{{ i + 1 }}', {{ match_numbers[i] }}],
+            ['{{ i + 1 }}', {{ data["trophy_road"]["match_numbers"][i] }}],
           {% endfor %}
         ]);
 
@@ -52,8 +55,8 @@
         var data = google.visualization.arrayToDataTable([
           ['King Level', 'Win Percentage', { role: 'style' }, {role: "annotation"}],
           {% for i in range(50) %}
-            {% if win_rates[i] != "N/A" %}
-              ["{{ i + 1 }}", {{ win_rates[i] }}, "{{ colors[(win_rates[i]) | int ] }}", {{ win_rates[i] }}],
+            {% if data["trophy_road"]["win_percentages"][i] != "N/A" %}
+              ["{{ i + 1 }}", {{ data["trophy_road"]["win_percentages"][i] }}, "{{ data["trophy_road"]["colors"][(data["trophy_road"]["win_percentages"][i]) | int ] }}", {{ data["trophy_road"]["win_percentages"][i] }}],
             {% endif %}
           {% endfor %}
         ]);
@@ -106,37 +109,59 @@
     </script>
   </head>
   <body style = "background-color: #222222">
-    <center>
+    <div id = "content">
       <div id="maintitle">
         <h1>Ladder Data</h1>
       </div>
       <div id="clashroyaletitle" style = "right: 0%">
-        <h2 style = "display: inline;">Player Name: </h2> <h2 style = "color: #4287f5; display: inline;">{{ name }}</h2>
+        <h2 style = "display: inline;">Player Name: </h2> <h2 style = "color: #4287f5; display: inline;">{{ data["trophy_road"]["player_name"] }}</h2>
         <br><br>
-        <h2 style = "display: inline;">Player Tag: </h2> <h2 style = "color: #4287f5; display: inline;">#{{ tag }}</h2>
-        <br><br>
-        <h2 style = "display: inline;">Average Ladder Win %: </h2> <h2 style = "color: #4287f5; display: inline;">{{ average_win_rate }}</h2>
-        <br><br>
-        <h2 style = "display: inline;">Average Card Level Difference: </h2> <h2 style = "color: #4287f5; display: inline;">{{ average_level_difference }}</h2>
-        <div id="piechart" style="margin-left: 210px;"></div>
-        <div id="column_chart" style="margin-left: 180px;"></div>
-        <table>
+        <h2 style = "display: inline;">Player Tag: </h2> <h2 style = "color: #4287f5; display: inline;">#{{ data["trophy_road"]["player_tag"] }}</h2>
+      </div>
+      <br>
+      <div id = "clashroyaletext">
+        <form onsubmit = "return false">
+            <span style = "color: white">Select Mode:</span>
+            <select title = "mode_options" id = "mode" name = "response_type">
+              <option value="Trophy Road">Trophy Road</option>
+              <option value="Path of Legends">Path of Legends</option>
+            </select>
+            <br><br>
+                  <input type = "submit" value = "Enter" onclick="switch_mode()" width="100" class = "try_it_out_button">
+        </form>
+      </div>
+      <div id = "specifictrophyroaddata">
+        <br>
+        <h2 style = "display: inline; margin: 0;">Average Ladder Win %: <span style = "color: #4287f5;">{{ data["trophy_road"]["average_ladder_win_percentage"] }}</span></h2>
+        <br>
+        <h2 style = "display: inline; margin: 0;">Average Card Level Difference: <span style = "color: #4287f5;">{{ data["trophy_road"]["average_level_difference"] }}</span></h2>
+        <div id="piechart" style="margin-left: 25%;"></div>
+        <div id="column_chart" style="margin-left: 5%"></div>
+        <div id = "table">
+          <table>
           <tr>
             <th>Opponent King<br>Tower Level</th>
             <th>Win %</th>
             <th>Match %</th>
           </tr>
           {% for i in range(50) %}
-            {% if win_rates[i] != "N/A" %}
+            {% if data["trophy_road"]["win_percentages"][i] != "N/A" %}
               <tr>
                 <td><div class = "container"><img src="{{ url_for('static',filename='Images/ExpLevel.png') }}" alt="Exp Logo" width="100" height="100"><div class = "centered">{{ i + 1 }}</div></div></td>
-                <td style = "color: #4287F5; font-family: ClashRoyale;">{{ win_rates[i] }}</td>
-                <td style = "color: #4287F5; font-family: ClashRoyale;">{{ match_percentages[i] }}</td>
+                <td style = "color: #4287F5; font-family: ClashRoyale;">{{ data["trophy_road"]["win_percentages"][i] }}</td>
+                <td style = "color: #4287F5; font-family: ClashRoyale;">{{ data["trophy_road"]["match_percentages"][i] }}</td>
               </tr>
             {% endif %}
           {% endfor %}
         </table>
+        </div>
       </div>
-    </center>
+      <div id = "specificlegendsdata">
+        <br>
+        <h2 style = "display: inline; margin: 0;">Average Ladder Win %: <span style = "color: #4287f5;">{{ data["path_of_legends"]["average_pol_win_percentage"] }}</span></h2>
+        <br>
+        <h2 style = "display: inline; margin: 0;">Average Card Level Difference: <span style = "color: #4287f5;">{{ data["path_of_legends"]["average_pol_level_difference"] }}</span></h2>
+      </div>
+    </div>
   </body>
 </html>
