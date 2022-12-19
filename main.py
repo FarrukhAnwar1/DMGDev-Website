@@ -8,7 +8,7 @@ app.config["DEBUG"] = False
 
 @app.route("/", methods=["GET"])
 def home():
-    return render_template("homepage.html")
+    return render_template("homepage.html", current_url = request.base_url)
 
 
 # Test Site: http://127.0.0.1:5000/api/clash/win_percentages?player_tag=PGLGY9QJ
@@ -40,6 +40,11 @@ def win_api():
         except Exception as e:
             print(e)
             return render_template("errorpage.html")
+
+
+@app.route("/discordbots/serverstatus", methods=["GET"])
+def server_status_page():
+    return render_template("serverstatusbotpage.html")
 
 
 if __name__ == "__main__":
