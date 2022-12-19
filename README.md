@@ -1,4 +1,4 @@
-# DMGDev-API-Endpoints
+# DMGDev-Website
 Source code for the DMGDev API Endpoints website.
 
 Website Homepage: https://dmg1plays.pythonanywhere.com/
