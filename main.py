@@ -1,6 +1,6 @@
 import flask
 from flask import request, jsonify, render_template
-from mysite.clash import main
+from clash import main
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = False
@@ -44,7 +44,7 @@ def win_api():
 
 @app.route("/discordbots/serverstatus", methods=["GET"])
 def server_status_page():
-    return render_template("serverstatusbotpage.html")
+    return render_template("server_status_bot_page.html")
 
 
 if __name__ == "__main__":

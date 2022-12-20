@@ -15,7 +15,6 @@ body {
     background: #5766f1;
     display: block;
     margin: 20px auto;
-    text-align: center;
     border: 2px solid #5766f1;
     padding: 14px 40px;
     outline: none;
@@ -39,6 +38,12 @@ h3, td:last-child {
 table {
     table-layout: fixed;
     background-color: #303136 !important;
+}
+
+.container-fluid > .row {
+    display: flex;
+    justify-content: center;
+    margin-top: 2px;
 }
 
 @media only screen and (max-width: 992px) {

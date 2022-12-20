@@ -10,38 +10,38 @@
     <link rel = "stylesheet" href = "https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity = "sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!-- Personal CSS -->
-    <link rel = "stylesheet" href = "{{ url_for('static',filename='Styles/serverstatusbotpagestyles.css') }}">
+    <link rel = "stylesheet" href = "../static/Styles/server_status_bot_page_styles.css">
 
     <!-- Personal JS -->
-    <script type="text/javascript" src="{{ url_for('static',filename='Scripts/serverstatusbotpagescript.js') }}"></script>
+    <script type="text/javascript" src="../static/Scripts/server_status_bot_page_script.js"></script>
 
     <!-- Tab title and image -->
     <title>Server Status Bot</title>
-    <link rel = "shortcut icon" href = "{{ url_for('static',filename='Images/bot_icon.png') }}" type = "image/x-icon">
+    <link rel = "shortcut icon" href = "../static/Images/bot_icon.png" type = "image/x-icon">
 
   </head>
   <body>
 
     <!-- Body -->
-    <div class = "container-fluid centered-content">
+    <div class = "container-fluid text-center">
 
       <!-- Bot Icon Row -->
-      <div class = "row d-flex justify-content-center mt-2">
-        <img id = "bot_icon" src = "{{ url_for('static',filename='Images/bot_icon.png') }}" alt = "Server Status Bot Icon">
+      <div class = "row">
+        <img id = "bot_icon" src = "../static/Images/bot_icon.png" alt = "Server Status Bot Icon">
       </div>
 
-      <!-- Bot Name and Description Row -->
-      <div class = "row d-flex justify-content-center mt-2">
+      <!-- Bot Name Row -->
+      <div class = "row">
         <h1>Server Status Discord Bot</h1>
       </div>
 
       <!-- Bot Description Row -->
-      <div class = "row d-flex justify-content-center mt-2">
+      <div class = "row">
         <h3>A simple bot that tells your Minecraft server's online status</h3>
       </div>
 
       <!-- Bot Link Row -->
-      <div class = "row d-flex justify-content-center">
+      <div class = "row">
         <form class = "box" onsubmit="open_bot_link(); return false;">
           <a href = "https://discord.com/api/oauth2/authorize?client_id=665668311840981029&permissions=8&scope=bot">
             <input type="submit" name="bot_link" value="Add to Server">
@@ -50,13 +50,13 @@
       </div>
 
       <!-- Commands Heading Row -->
-      <div class = "row d-flex justify-content-center mt-2">
+      <div class = "row">
         <h2>Commands</h2>
       </div>
 
       <!-- Commands Table Row -->
-      <div class = "row d-flex justify-content-center mt-2">
-        <table class = "table table-bordered text-center">
+      <div class = "row">
+        <table class = "table table-bordered">
           <tbody>
             <tr>
               <td>
