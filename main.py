@@ -1,6 +1,6 @@
 import flask
 from flask import request, jsonify, render_template
-from clash import main
+from mysite.clash import main
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = False

@@ -61,7 +61,7 @@ def find_match_percentages(player_matches, total_matches):
 
 
 def main(provided_player_tag):
-    with open("api_token.txt") as f:
+    with open("mysite/api_token.txt") as f:
         api_token = f.read().rstrip("\n")
 
     player_tag = provided_player_tag
