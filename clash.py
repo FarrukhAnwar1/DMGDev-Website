@@ -18,8 +18,6 @@ def win_percentage(player_battles, level):
             total_matches += 1
             if player_battle[1]:
                 total_wins += 1
-    if total_matches == 0:
-        return "N/A"
     percentage = round(((total_wins / total_matches) * 100), 2)
     return percentage
 
@@ -27,7 +25,6 @@ def win_percentage(player_battles, level):
 def find_card_levels(cards):
     total_card_levels = 0
     for card in cards:
-        # print(card, card["level"] + 14 - card["maxLevel"])
         total_card_levels += card["level"] + (14 - card["maxLevel"])
     return total_card_levels
 
@@ -64,6 +61,7 @@ def main(provided_player_tag):
     with open("mysite/api_token.txt") as f:
         api_token = f.read().rstrip("\n")
 
+    max_level = 50
     player_tag = provided_player_tag
     url = f"https://api.clashroyale.com/v1/players/%23{player_tag}/battlelog"
     headers = {"Authorization": "Bearer %s" % api_token}
@@ -78,13 +76,28 @@ def main(provided_player_tag):
     if response.status_code == 404:
         return ["Incorrect Tag Provided"]
 
+    colors = ['red', '#ff0600', '#fe0b00', '#fe1101', '#fe1601', '#fd1c01', '#fd2101', '#fd2701', '#fc2c01', '#fc3202',
+              '#fc3702', '#fb3d02', '#fb4202', '#fb4702', '#fa4d02', '#fa5203', '#fa5703', '#f95d03', '#f96203',
+              '#f96703', '#f86c03', '#f87204', '#f87704', '#f77c04', '#f78104', '#f78604', '#f68b04', '#f69005',
+              '#f69505', '#f59a05', '#f59f05', '#f5a405', '#f4a905', '#f4ae06', '#f4b306', '#f3b806', '#f3bd06',
+              '#f3c206', '#f2c706', '#f2cb07', '#f2d007', '#f1d507', '#f1da07', '#f1de07', '#f0e307', '#f0e807',
+              '#f0ed08', '#edef08', '#e8ef08', '#e3ef08', '#ddee08', '#d8ee08', '#d3ee09', '#ceed09', '#c9ed09',
+              '#c4ed09', '#beec09', '#b9ec09', '#b4ec0a', '#afeb0a', '#aaeb0a', '#a5eb0a', '#a0ea0a', '#9bea0a',
+              '#96ea0b', '#91e90b', '#8de90b', '#88e90b', '#83e80b', '#7ee80b', '#79e80b', '#74e70c', '#70e70c',
+              '#6be70c', '#66e60c', '#61e60c', '#5de60c', '#58e50d', '#53e50d', '#4fe50d', '#4ae40d', '#45e40d',
+              '#41e40d', '#3ce30d', '#38e30e', '#33e30e', '#2fe20e', '#2ae20e', '#26e20e', '#21e20e', '#1de10f',
+              '#19e10f', '#14e10f', '#10e00f', '#0fe013', '#0fe017', '#0fdf1c', '#10df20', '#10df25', '#10de29',
+              '#10de2e']
+
+    # Trophy Road data
     player_levels_list = []
     opponent_levels_list = []
     ladder_battles = []
-    match_percentages = [0] * 50
+    match_percentages = [0] * max_level
     total_battles = 0
     found_name = False
     player_name = None
+    win_percentages = []
 
     # Path of Legends data
     pol_total_battles = 0
@@ -136,18 +149,19 @@ def main(provided_player_tag):
             opponent_cards = battle["opponent"][0]["cards"]
             pol_opponent_levels_list.append(find_card_levels(opponent_cards))
 
-    if len(ladder_battles) == 0:
-        return "No recent ladder battles found"
+    if total_battles != 0:
+        for i in range(max_level):
+            win_percentages.append(win_percentage(ladder_battles, i + 1))
 
-    win_percentages = []
-    for i in range(50):
-        win_percentages.append(win_percentage(ladder_battles, i + 1))
-
-    ladder_win_percentage = overall_win_percentage(ladder_battles)
-    average_difference = find_average_difference(player_levels_list, opponent_levels_list)
-    match_numbers = match_percentages.copy()
-    match_percentages = find_match_percentages(match_percentages, total_battles)
-    colors = ['red', '#ff0600', '#fe0b00', '#fe1101', '#fe1601', '#fd1c01', '#fd2101', '#fd2701', '#fc2c01', '#fc3202', '#fc3702', '#fb3d02', '#fb4202', '#fb4702', '#fa4d02', '#fa5203', '#fa5703', '#f95d03', '#f96203', '#f96703', '#f86c03', '#f87204', '#f87704', '#f77c04', '#f78104', '#f78604', '#f68b04', '#f69005', '#f69505', '#f59a05', '#f59f05', '#f5a405', '#f4a905', '#f4ae06', '#f4b306', '#f3b806', '#f3bd06', '#f3c206', '#f2c706', '#f2cb07', '#f2d007', '#f1d507', '#f1da07', '#f1de07', '#f0e307', '#f0e807', '#f0ed08', '#edef08', '#e8ef08', '#e3ef08', '#ddee08', '#d8ee08', '#d3ee09', '#ceed09', '#c9ed09', '#c4ed09', '#beec09', '#b9ec09', '#b4ec0a', '#afeb0a', '#aaeb0a', '#a5eb0a', '#a0ea0a', '#9bea0a', '#96ea0b', '#91e90b', '#8de90b', '#88e90b', '#83e80b', '#7ee80b', '#79e80b', '#74e70c', '#70e70c', '#6be70c', '#66e60c', '#61e60c', '#5de60c', '#58e50d', '#53e50d', '#4fe50d', '#4ae40d', '#45e40d', '#41e40d', '#3ce30d', '#38e30e', '#33e30e', '#2fe20e', '#2ae20e', '#26e20e', '#21e20e', '#1de10f', '#19e10f', '#14e10f', '#10e00f', '#0fe013', '#0fe017', '#0fdf1c', '#10df20', '#10df25', '#10de29', '#10de2e']
+        ladder_win_percentage = overall_win_percentage(ladder_battles)
+        average_difference = find_average_difference(player_levels_list, opponent_levels_list)
+        match_numbers = match_percentages.copy()
+        match_percentages = find_match_percentages(match_percentages, total_battles)
+    else:
+        ladder_win_percentage = "N/A"
+        average_difference = 0
+        match_numbers = [0] * max_level
+        win_percentages = ["N/A"] * max_level
 
     if pol_total_battles != 0:
         pol_average_win_percentage = round(((pol_battles_won / pol_total_battles) * 100), 2)
