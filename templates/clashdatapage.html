@@ -131,36 +131,46 @@
         </form>
       </div>
       <div id = "specifictrophyroaddata">
-        <br>
-        <h2 style = "display: inline; margin: 0;">Average Ladder Win %: <span style = "color: #4287f5;">{{ data["trophy_road"]["average_ladder_win_percentage"] }}</span></h2>
-        <br>
-        <h2 style = "display: inline; margin: 0;">Average Card Level Difference: <span style = "color: #4287f5;">{{ data["trophy_road"]["average_level_difference"] }}</span></h2>
-        <div id="piechart" style="margin-left: 25%;"></div>
-        <div id="column_chart" style="margin-left: 5%"></div>
-        <div id = "table">
-          <table>
-          <tr>
-            <th>Opponent King<br>Tower Level</th>
-            <th>Win %</th>
-            <th>Match %</th>
-          </tr>
-          {% for i in range(data["trophy_road"]["win_percentages"] | length) %}
-            {% if data["trophy_road"]["win_percentages"][i] != "N/A" %}
+        {% if data["trophy_road"]["has_battled"] %}
+          <br>
+          <h2 style = "display: inline; margin: 0;">Average Win %: <span style = "color: #4287f5;">{{ data["trophy_road"]["average_ladder_win_percentage"] }}</span></h2>
+          <br>
+          <h2 style = "display: inline; margin: 0;">Average Card Level Difference: <span style = "color: #4287f5;">{{ data["trophy_road"]["average_level_difference"] }}</span></h2>
+          <div id="piechart" style="margin-left: 25%;"></div>
+          <div id="column_chart" style="margin-left: 5%"></div>
+          <div id = "table">
+            <table>
               <tr>
-                <td><div class = "container"><img src="{{ url_for('static',filename='Images/ExpLevel.png') }}" alt="Exp Logo" width="100" height="100"><div class = "centered">{{ i + 1 }}</div></div></td>
-                <td style = "color: #4287F5; font-family: ClashRoyale;">{{ data["trophy_road"]["win_percentages"][i] }}</td>
-                <td style = "color: #4287F5; font-family: ClashRoyale;">{{ data["trophy_road"]["match_percentages"][i] }}</td>
+                <th>Opponent King<br>Tower Level</th>
+                <th>Win %</th>
+                <th>Match %</th>
               </tr>
-            {% endif %}
-          {% endfor %}
-        </table>
-        </div>
+            {% for i in range(data["trophy_road"]["win_percentages"] | length) %}
+              {% if data["trophy_road"]["win_percentages"][i] != "N/A" %}
+                <tr>
+                  <td><div class = "container"><img src="{{ url_for('static',filename='Images/ExpLevel.png') }}" alt="Exp Logo" width="100" height="100"><div class = "centered">{{ i + 1 }}</div></div></td>
+                  <td style = "color: #4287F5; font-family: ClashRoyale;">{{ data["trophy_road"]["win_percentages"][i] }}</td>
+                  <td style = "color: #4287F5; font-family: ClashRoyale;">{{ data["trophy_road"]["match_percentages"][i] }}</td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+            </table>
+          </div>
+        {% else %}
+          <br>
+          <h2 style = "display: inline; margin: 0;">No Recent Trophy Road Battles Found</h2>
+        {% endif %}
       </div>
       <div id = "specificlegendsdata">
-        <br>
-        <h2 style = "display: inline; margin: 0;">Average Ladder Win %: <span style = "color: #4287f5;">{{ data["path_of_legends"]["average_pol_win_percentage"] }}</span></h2>
-        <br>
-        <h2 style = "display: inline; margin: 0;">Average Card Level Difference: <span style = "color: #4287f5;">{{ data["path_of_legends"]["average_pol_level_difference"] }}</span></h2>
+        {% if data["path_of_legends"]["has_battled"] %}
+          <br>
+          <h2 style = "display: inline; margin: 0;">Average Win %: <span style = "color: #4287f5;">{{ data["path_of_legends"]["average_pol_win_percentage"] }}</span></h2>
+          <br>
+          <h2 style = "display: inline; margin: 0;">Average Card Level Difference: <span style = "color: #4287f5;">{{ data["path_of_legends"]["average_pol_level_difference"] }}</span></h2>
+        {% else %}
+          <br>
+          <h2 style = "display: inline; margin: 0;">No Recent Path of Legends Battles Found</h2>
+        {% endif %}
       </div>
     </div>
   </body>

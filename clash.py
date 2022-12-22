@@ -98,12 +98,14 @@ def main(provided_player_tag):
     found_name = False
     player_name = None
     win_percentages = []
+    has_battled = False
 
     # Path of Legends data
     pol_total_battles = 0
     pol_battles_won = 0
     pol_player_levels_list = []
     pol_opponent_levels_list = []
+    pol_has_battled = False
 
     for battle in battles:
         if battle["type"] == "PvP":
@@ -150,22 +152,24 @@ def main(provided_player_tag):
             pol_opponent_levels_list.append(find_card_levels(opponent_cards))
 
     if total_battles != 0:
+        has_battled = True
         for i in range(max_level):
             win_percentages.append(win_percentage(ladder_battles, i + 1))
 
         ladder_win_percentage = overall_win_percentage(ladder_battles)
-        average_difference = find_average_difference(player_levels_list, opponent_levels_list)
+        average_difference = -find_average_difference(player_levels_list, opponent_levels_list)
         match_numbers = match_percentages.copy()
         match_percentages = find_match_percentages(match_percentages, total_battles)
     else:
         ladder_win_percentage = "N/A"
-        average_difference = 0
+        average_difference = "N/A"
         match_numbers = [0] * max_level
-        win_percentages = ["N/A"] * max_level
+        win_percentages = match_percentages = ["N/A"] * max_level
 
     if pol_total_battles != 0:
+        pol_has_battled = True
         pol_average_win_percentage = round(((pol_battles_won / pol_total_battles) * 100), 2)
-        pol_average_card_level_difference = find_average_difference(pol_player_levels_list, pol_opponent_levels_list)
+        pol_average_card_level_difference = -find_average_difference(pol_player_levels_list, pol_opponent_levels_list)
     else:
         pol_average_win_percentage = "N/A"
         pol_average_card_level_difference = "N/A"
@@ -175,13 +179,15 @@ def main(provided_player_tag):
         "player_tag": provided_player_tag,
         "win_percentages": win_percentages,
         "average_ladder_win_percentage": ladder_win_percentage,
-        "average_level_difference": -average_difference,
+        "average_level_difference": average_difference,
         "match_percentages": match_percentages,
         "match_numbers": match_numbers,
-        "colors": colors
+        "colors": colors,
+        "has_battled": has_battled
     }, "path_of_legends": {
         "average_pol_win_percentage": pol_average_win_percentage,
-        "average_pol_level_difference": -pol_average_card_level_difference
+        "average_pol_level_difference": pol_average_card_level_difference,
+        "has_battled": pol_has_battled
     }}
 
     return data_to_return
