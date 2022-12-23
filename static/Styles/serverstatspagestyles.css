@@ -1,0 +1,47 @@
+html {
+	min-height: 100%;
+}
+body {
+	margin: 0;
+	padding: 0;
+    background-image: radial-gradient(circle, gray, black);
+	background-size: cover;
+}
+h1 {
+    font-family: MinecrafterAltRegular;
+    color: white;
+    font-size: 60px;
+	text-shadow:
+   	-1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+h1.address {
+	font-family: MinecraftiaRegular;
+	text-transform: none !important;
+}
+h1.status {
+	color: #1ec731;
+	text-shadow:
+   	-1px -1px 0 #ffffff,
+    2px -1px 0 #ffffff,
+    -1px 5px 0 #ffffff,
+    1px 1px 0 #ffffff;
+}
+h1.status_offline {
+	color: #c91e1e;
+	text-shadow:
+   	-1px -1px 0 #ffffff,
+    2px -1px 0 #ffffff,
+    -1px 5px 0 #ffffff,
+    1px 1px 0 #ffffff;
+}
+h1.motd {
+	font-family: MinecraftiaRegular;
+}
+h1.players {
+	font-family: MinecraftiaRegular;
+	font-size: 30px;
+	text-transform: none !important;
+}

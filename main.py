@@ -1,6 +1,7 @@
 import flask
 from flask import request, jsonify, render_template
 from mysite.clash import main
+from mysite.find_server_stats import get_stats
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = False
@@ -45,6 +46,24 @@ def win_api():
 @app.route("/discordbots/serverstatus", methods=["GET"])
 def server_status_page():
     return render_template("server_status_bot_page.html")
+
+
+@app.route("/mcserverstats/", methods=["GET"])
+def mc_page():
+    return render_template("mcpage.html")
+
+
+@app.route("/mcserverstats/<ip>", methods=["GET"])
+def server_stats_page(ip):
+    try:
+        stats = get_stats(ip)
+        if stats["status"] == "Online":
+            return render_template("serverstatspage.html", ip=ip, stats=stats)
+        else:
+            return render_template("offlineserverstatspage.html", ip=ip, stats=stats)
+    except Exception as e:
+        print(e)
+        return render_template("errorserverstatspage.html")
 
 
 if __name__ == "__main__":

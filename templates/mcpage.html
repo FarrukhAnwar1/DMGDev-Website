@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Minecraft Server Stats</title>
+        <link rel="icon" href="https://mcsrvstat.us/img/minecraft.png" type="image/gif">
+        <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/minecraftia" type="text/css"/>
+		<link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/minecraft" type="text/css"/>
+		<link rel="stylesheet" href="{{ url_for('static',filename='Styles/mcpagestyles.css') }}">
+        <script type="text/javascript" src="{{ url_for('static',filename='Scripts/mcpagescript.js') }}"></script>
+    </head>
+    <body>
+        <form class="box" onsubmit="find_stats();return false;">
+  			<h1>MC Server Stats</h1>
+  			<input type="text" name="ipInput" id="ipInput" placeholder="IP Address">
+  			<input type="submit" name="ipBtn" value="Find Stats">
+  		</form>
+    </body>
+</html>
