@@ -18,8 +18,10 @@ def win_percentage(player_battles, level):
             total_matches += 1
             if player_battle[1]:
                 total_wins += 1
-    percentage = round(((total_wins / total_matches) * 100), 2)
-    return percentage
+    if total_matches != 0:
+        percentage = round(((total_wins / total_matches) * 100), 2)
+        return percentage
+    return "N/A"
 
 
 def find_card_levels(cards):
