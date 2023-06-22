@@ -1,8 +1,8 @@
 import flask
 from flask import request, jsonify, render_template
-from mysite.clash import main
-from mysite.find_server_stats import get_stats
-import mysite.optimal_class_scheduler
+import clash
+import find_server_stats
+import optimal_class_scheduler
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = False
@@ -27,7 +27,7 @@ def win_api():
             html = True
     if not html:
         try:
-            data_to_return = main(player_tag)
+            data_to_return = clash.main(player_tag)
             return jsonify(data_to_return)
         except Exception as e:
             print(e)
@@ -37,7 +37,7 @@ def win_api():
                    "issue."
     elif html:
         try:
-            data_to_return = main(player_tag)
+            data_to_return = clash.main(player_tag)
             return render_template("clashdatapage.html", data=data_to_return)
         except Exception as e:
             print(e)
@@ -57,7 +57,7 @@ def mc_page():
 @app.route("/mcserverstats/<ip>", methods=["GET"])
 def server_stats_page(ip):
     try:
-        stats = get_stats(ip)
+        stats = find_server_stats.get_stats(ip)
         if stats["status"] == "Online":
             return render_template("serverstatspage.html", ip=ip, stats=stats)
         else:
