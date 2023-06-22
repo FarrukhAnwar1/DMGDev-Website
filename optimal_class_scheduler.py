@@ -31,6 +31,10 @@ class Class:
         return "".join([day_dictionary[day] for day in self.days])
 
     def has_conflict(self, other):
+
+        if set(self.days).isdisjoint(other.days):
+            return False
+
         if self.start_time < other.start_time < self.end_time:
             return True
         if self.start_time < other.end_time < self.end_time:
