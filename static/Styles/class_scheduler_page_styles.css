@@ -1,0 +1,91 @@
+body {
+    background-color: black;
+    color: gold;
+}
+
+hr {
+    border-color: white;
+    border-width: 3px;
+    max-width: 100%;
+}
+
+hr.class-seperator {
+    border-color: gold;
+}
+
+label {
+    color: white;
+    font-size: 1.2em !important;
+}
+
+input {
+    font-weight: bold;
+}
+
+.timing-input {
+    margin-left: 30%;
+}
+
+input[type="submit"] {
+    font-size: 16px;
+    border: 0;
+    background: gold;
+    display: block;
+    margin: 20px auto;
+    border: 2px solid gold;
+    padding: 14px 40px;
+    outline: none;
+    color: black;
+    border-radius: 24px;
+    transition: 0.25s;
+    cursor: pointer;
+    width: 224px;
+    height: 55px;
+}
+
+input[type="submit"].timing-modifier {
+    margin-left: 30%;
+}
+
+input[type="submit"]:hover {
+    width: 304px;
+    background: goldenrod;
+}
+
+.container-fluid > .row {
+    display: flex;
+    justify-content: center;
+    margin-top: 2px;
+}
+
+.classesheader {
+    color: white;
+}
+
+.scheduleheader {
+    color: white;
+}
+
+.classheader {
+    text-decoration: underline;
+}
+
+.dayheader {
+    color: lightgrey;
+}
+
+.timingheader {
+    font-style: italic;
+}
+
+.generate-schedule-highlight {
+    color: gold;
+}
+
+button {
+    color: gold !important;
+}
+
+.main-button {
+    font-weight: bold;
+}

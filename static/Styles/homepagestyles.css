@@ -69,3 +69,17 @@ a:visited{
     font-size: 30px;
     font-family: MinecraftiaRegular;
 }
+
+#college-title {
+    color: gold;
+    position: relative;
+    right: 19%;
+    font-size: 35px !important;
+    font-family: sans-serif;
+}
+
+#college-text {
+    color: white;
+    font-size: 35px !important;
+    font-family: sans-serif;
+}

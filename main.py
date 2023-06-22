@@ -2,9 +2,11 @@ import flask
 from flask import request, jsonify, render_template
 from mysite.clash import main
 from mysite.find_server_stats import get_stats
+import mysite.optimal_class_scheduler
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = False
+app.config["JSONIFY_MIMETYPE"] = "application/json; charset=utf-8"
 
 
 @app.route("/", methods=["GET"])
@@ -12,7 +14,6 @@ def home():
     return render_template("homepage.html", current_url = request.base_url)
 
 
-# Test Site: http://127.0.0.1:5000/api/clash/win_percentages?player_tag=PGLGY9QJ
 @app.route("/api/clash/win_percentages", methods=["GET"])
 def win_api():
     html = False
@@ -64,6 +65,18 @@ def server_stats_page(ip):
     except Exception as e:
         print(e)
         return render_template("errorserverstatspage.html")
+
+
+@app.route("/classscheduler")
+def class_scheduler():
+    return render_template("class_scheduler_page.html")
+
+
+@app.route("/classscheduler/data", methods=["POST"])
+def class_scheduler_data():
+    data = request.get_json()
+    output = optimal_class_scheduler.main(data)
+    return jsonify(output)
 
 
 if __name__ == "__main__":
