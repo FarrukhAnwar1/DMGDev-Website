@@ -3,6 +3,7 @@ from flask import request, jsonify, render_template
 import clash
 import find_server_stats
 import optimal_class_scheduler
+import traceback
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = False
@@ -29,8 +30,8 @@ def win_api():
         try:
             data_to_return = clash.main(player_tag)
             return jsonify(data_to_return)
-        except Exception as e:
-            print(e)
+        except Exception:
+            traceback.print_exc()
             return "An error occurred while retrieving data. Check to see if the player tag was entered correctly. If "\
                    "that doesn't work, open an issue on the Source Code GitHub issue page (" \
                    "https://github.com/DMG1Plays/DMGDev-API-Endpoints/issues) to see if the server admin can fix the " \
@@ -39,8 +40,8 @@ def win_api():
         try:
             data_to_return = clash.main(player_tag)
             return render_template("clashdatapage.html", data=data_to_return)
-        except Exception as e:
-            print(e)
+        except Exception:
+            traceback.print_exc()
             return render_template("errorpage.html")
 
 
@@ -62,8 +63,8 @@ def server_stats_page(ip):
             return render_template("serverstatspage.html", ip=ip, stats=stats)
         else:
             return render_template("offlineserverstatspage.html", ip=ip, stats=stats)
-    except Exception as e:
-        print(e)
+    except Exception:
+        traceback.print_exc()
         return render_template("errorserverstatspage.html")
 
 

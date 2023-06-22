@@ -27,7 +27,7 @@ def win_percentage(player_battles, level):
 def find_card_levels(cards):
     total_card_levels = 0
     for card in cards:
-        total_card_levels += card["level"] + (14 - card["maxLevel"])
+        total_card_levels += card["level"] + (15 - card["maxLevel"])
     return total_card_levels
 
 
@@ -60,10 +60,15 @@ def find_match_percentages(player_matches, total_matches):
 
 
 def main(provided_player_tag):
-    with open("mysite/api_token.txt") as f:
-        api_token = f.read().rstrip("\n")
 
-    max_level = 50
+    try:
+        with open("api_token.txt") as f:
+            api_token = f.read().rstrip("\n")
+    except:
+        with open("mysite/api_token.txt") as f:
+            api_token = f.read().rstrip("\n")
+
+    max_level = 70
     player_tag = provided_player_tag
     url = f"https://api.clashroyale.com/v1/players/%23{player_tag}/battlelog"
     headers = {"Authorization": "Bearer %s" % api_token}
@@ -73,6 +78,7 @@ def main(provided_player_tag):
     battles = json.loads(response.content)
 
     if response.status_code == 403:
+        print(response.content)
         return ["Server Side Issue"]
 
     if response.status_code == 404:
@@ -116,12 +122,17 @@ def main(provided_player_tag):
             opponent_level = find_opponent_level(opponent_tag, headers)
             match_percentages[opponent_level - 1] += 1
 
-            trophy_change = battle["team"][0]["trophyChange"]
-
-            if trophy_change > 0:
-                did_win = True
+            if "trophyChange" in battle["team"][0].keys():
+                trophy_change = battle["team"][0]["trophyChange"]
+                if trophy_change > 0:
+                    did_win = True
+                else:
+                    did_win = False
             else:
-                did_win = False
+                if battle["team"][0]["crowns"] > battle["opponent"][0]["crowns"]:
+                    did_win = True
+                else:
+                    did_win = False
 
             if not found_name:
                 player_name = battle["team"][0]["name"]
