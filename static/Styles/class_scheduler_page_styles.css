@@ -82,10 +82,22 @@ input[type="submit"]:hover {
     color: gold;
 }
 
-button {
+.btn-dark {
     color: gold !important;
 }
 
 .main-button {
     font-weight: bold;
+}
+
+.modal-content {
+    background-color: #242729;
+}
+
+.modal-header {
+    color: gold;
+}
+
+.modal-footer button {
+    font-weight: bold !important;
 }

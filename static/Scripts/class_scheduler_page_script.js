@@ -15,23 +15,48 @@ var globalData = {
 }
 
 function initialLoadData() {
+    localStorage.setItem("Default", JSON.stringify(globalData));
     renderClasses(globalData);
 }
 
 function saveData() {
     readInput();
-    localStorage.setItem("data", JSON.stringify(globalData));
+    var saveName = document.getElementById("saveNameInput").value;
+    localStorage.setItem(DOMPurify.sanitize(saveName), JSON.stringify(globalData));
+}
+
+function populateSaveNames() {
+
+    var saveNames = Object.keys(localStorage);
+    var options = "";
+
+    saveNames.forEach(saveName => {
+        options += `
+                   <option>${saveName}</option>
+                   `;
+    });
+
+    document.getElementById("loadSaveNameInput").innerHTML = options;
+
+}
+
+function removeSave() {
+
+    var saveName = document.getElementById("loadSaveNameInput").value;
+    localStorage.removeItem(saveName);
+    populateSaveNames();
+
 }
 
 function loadSavedData() {
 
-    var data = localStorage.getItem("data");
+    var saveName = document.getElementById("loadSaveNameInput").value;
+    var data = localStorage.getItem(saveName);
 
     if (data != null) {
-        globalData = JSON.parse(data);
+        globalData = JSON.parse(DOMPurify.sanitize(data));
+        renderClasses(globalData);
     }
-
-    renderClasses(globalData);
 
 }
 

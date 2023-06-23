@@ -122,17 +122,10 @@ def main(provided_player_tag):
             opponent_level = find_opponent_level(opponent_tag, headers)
             match_percentages[opponent_level - 1] += 1
 
-            if "trophyChange" in battle["team"][0].keys():
-                trophy_change = battle["team"][0]["trophyChange"]
-                if trophy_change > 0:
-                    did_win = True
-                else:
-                    did_win = False
+            if battle["team"][0]["crowns"] > battle["opponent"][0]["crowns"]:
+                did_win = True
             else:
-                if battle["team"][0]["crowns"] > battle["opponent"][0]["crowns"]:
-                    did_win = True
-                else:
-                    did_win = False
+                did_win = False
 
             if not found_name:
                 player_name = battle["team"][0]["name"]
@@ -149,10 +142,8 @@ def main(provided_player_tag):
         elif battle["type"] == "pathOfLegend":
             pol_total_battles += 1
 
-            if "trophyChange" in battle["team"][0].keys():
-                trophy_change = battle["team"][0]["trophyChange"]
-                if trophy_change > 0:
-                    pol_battles_won += 1
+            if battle["team"][0]["crowns"] > battle["opponent"][0]["crowns"]:
+                pol_battles_won += 1
 
             if not found_name:
                 player_name = battle["team"][0]["name"]
