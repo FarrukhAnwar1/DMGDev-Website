@@ -47,7 +47,8 @@ input[type="submit"].timing-modifier {
     margin-left: 30%;
 }
 
-input[type="submit"]:hover {
+@media (hover: hover) {
+    input[type="submit"]:hover {
     width: 304px;
     background: goldenrod;
 }
