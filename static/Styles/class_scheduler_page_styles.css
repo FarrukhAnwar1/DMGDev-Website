@@ -48,7 +48,7 @@ input[type="submit"].timing-modifier {
 }
 
 @media (hover: hover) {
-    input[type="submit"]:hover {
+    input[type="submit"]:hover.hasHoverEffect {
         width: 304px;
         background: goldenrod;
     }

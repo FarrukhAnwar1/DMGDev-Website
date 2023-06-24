@@ -22,6 +22,14 @@ function initialLoadData() {
     $("button, input[type='submit']").on(isMobile ? 'touchend' : 'click', function(e) {
         navigator.vibrate(50);
     });
+
+    if (!isTouchEnabled()) {
+        document.getElementById("addClassButton").classList.add("hasHoverEffect");
+        document.getElementById("removeClassButton").classList.add("hasHoverEffect");
+        document.getElementById("saveDataButton").classList.add("hasHoverEffect");
+        document.getElementById("loadSavedDataButton").classList.add("hasHoverEffect");
+        document.getElementById("generateScheduleButton").classList.add("hasHoverEffect");
+    }
 }
 
 function saveData() {
@@ -288,4 +296,10 @@ function outputErrorResult() {
 
     document.getElementById("generate-schedule").scrollIntoView({ behavior: 'smooth' });
 
+}
+
+function isTouchEnabled() {
+   return ('ontouchstart' in window) ||
+   (navigator.maxTouchPoints > 0) ||
+   (navigator.msMaxTouchPoints > 0);
 }

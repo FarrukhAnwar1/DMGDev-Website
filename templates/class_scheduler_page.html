@@ -154,11 +154,11 @@
             <!-- Scheduler Class Modifiers and Generate Schedule Buttons Row -->
             <div class = "row">
                 <form onsubmit = "return false">
-                    <input type = "submit" name = "add_class" value = "Add Class" onclick = "addClass()">
-                    <input type = "submit" name = "remove_class" value = "Remove Class" onclick = "removeClass()">
-                    <input type = "submit" name = "save_data" value = "Save Data" data-toggle = "modal" data-target = "#saveDataModal">
-                    <input type = "submit" name = "load_saved_data" value = "Load Saved Data" data-toggle = "modal" data-target = "#loadSavedDataModal" onclick = "populateSaveNames()">
-                    <input type = "submit" name = "generate_schedule" value = "Generate Schedule" onclick = "sendData()" id = "generate-schedule">
+                    <input type = "submit" id = "addClassButton" value = "Add Class" onclick = "addClass()">
+                    <input type = "submit" id = "removeClassButton" value = "Remove Class" onclick = "removeClass()">
+                    <input type = "submit" id = "saveDataButton" value = "Save Data" data-toggle = "modal" data-target = "#saveDataModal">
+                    <input type = "submit" id = "loadSavedDataButton" value = "Load Saved Data" data-toggle = "modal" data-target = "#loadSavedDataModal" onclick = "populateSaveNames()">
+                    <input type = "submit" id = "generateScheduleButton" value = "Generate Schedule" onclick = "sendData()" id = "generate-schedule">
                 </form>
             </div>
 
