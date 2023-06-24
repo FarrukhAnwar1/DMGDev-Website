@@ -282,7 +282,7 @@ function outputResult(result) {
 
     document.getElementById("output").innerHTML = output;
 
-    document.getElementById("generate-schedule").scrollIntoView({ behavior: 'smooth' });
+    document.getElementById("generateScheduleButton").scrollIntoView({ behavior: 'smooth' });
 
 }
 
@@ -299,7 +299,7 @@ function outputErrorResult() {
 
     document.getElementById("output").innerHTML = output;
 
-    document.getElementById("generate-schedule").scrollIntoView({ behavior: 'smooth' });
+    document.getElementById("generateScheduleButton").scrollIntoView({ behavior: 'smooth' });
 
 }
 
