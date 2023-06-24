@@ -17,6 +17,11 @@ var globalData = {
 function initialLoadData() {
     localStorage.setItem("Default", JSON.stringify(globalData));
     renderClasses(globalData);
+    var isMobile = (/iPhone|iPod|iPad|Android|BlackBerry/).test(navigator.userAgent);
+
+    $("button, input[type='submit']").on(isMobile ? 'touchend' : 'click', function(e) {
+        navigator.vibrate(50);
+    });
 }
 
 function saveData() {

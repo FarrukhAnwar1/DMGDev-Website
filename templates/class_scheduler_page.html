@@ -35,6 +35,20 @@
         <!-- Body -->
         <div class = "container-fluid text-center">
 
+            <!-- Navbar Row -->
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-bottom justify-content-center">
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id = "mainNavbar">
+                <div class="navbar-nav nav-custom nav-fill w-100">
+                  <button type = "button" class = "nav-item btn btn-dark col-sm-4" data-toggle = "modal" data-target = "#saveDataModal">Save Data</button>
+                  <button type = "button" class = "nav-item btn btn-dark main-button col-sm-4" onclick = "sendData()">Generate Schedule</button>
+                  <button type = "button" class = "nav-item btn btn-dark" data-toggle = "modal" data-target = "#loadSavedDataModal" onclick = "populateSaveNames()">Load Saved Data</button>
+                </div>
+              </div>
+            </nav>
+
             <!-- Save Data Modal -->
             <div class="modal fade" id="saveDataModal" tabindex="-1" role="dialog" aria-labelledby="saveDataModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -89,20 +103,6 @@
                 </div>
             </div>
 
-            <!-- Navbar Row -->
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-bottom justify-content-center">
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id = "mainNavbar">
-                <div class="navbar-nav nav-custom nav-fill w-100">
-                  <button type = "button" class = "nav-item btn btn-dark col-lg-4" data-toggle = "modal" data-target = "#saveDataModal">Save Data</button>
-                  <button type = "button" class = "nav-item btn btn-dark main-button col-lg-4" onclick = "sendData()">Generate Schedule</button>
-                  <button type = "button" class = "nav-item btn btn-dark" data-toggle = "modal" data-target = "#loadSavedDataModal" onclick = "populateSaveNames()">Load Saved Data</button>
-                </div>
-              </div>
-            </nav>
-
             <!-- Scheduler Name Row -->
             <div class = "row">
                 <h2>Optimal Class Scheduler</h2>
@@ -119,14 +119,14 @@
             <div class = "row">
 
                 <form onsubmit = "return false">
-                    <div class = "form-group row">
-                        <label for = "preferredMaxTimeBetweenClassesInput" class = "col-sm-8 col-form-label">Preferred Maximum Time Between Classes</label>
-                        <input title = "Enter positive hours" type = "number" class = "col-sm-4 form-control" placeholder = 0 id = "preferredMaxTimeBetweenClassesInput" min = "0" aria-describedby = "timeBeenClassesHelpInline">
+                    <div class = "form-group row justify-content-center">
+                        <label for = "preferredMaxTimeBetweenClassesInput" class = "col-md-8 col-form-label">Preferred Maximum Time Between Classes</label>
+                        <input title = "Enter positive hours" type = "number" class = "w-50 col-md-4 form-control" placeholder = 0 id = "preferredMaxTimeBetweenClassesInput" min = "0" aria-describedby = "timeBeenClassesHelpInline">
                     </div>
 
-                    <div class = "form-group row">
-                        <label for = "preferredMaxClassesPerDayInput" class = "col-sm-8 col-form-label">Preferred Maximum Classes Per Day</label>
-                        <input type = "number" class = "col-sm-4 form-control" placeholder = 0 id = "preferredMaxClassesPerDayInput" min="0">
+                    <div class = "form-group row justify-content-center">
+                        <label for = "preferredMaxClassesPerDayInput" class = "col-md-8 col-form-label">Preferred Maximum Classes Per Day</label>
+                        <input type = "number" class = "w-50 col-md-4 form-control" placeholder = 0 id = "preferredMaxClassesPerDayInput" min="0">
                     </div>
                 </form>
 
