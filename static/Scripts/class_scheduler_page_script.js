@@ -113,6 +113,11 @@ function renderClasses(data) {
     document.getElementById("preferredMaxClassesPerDayInput").value = data["preferred_max_classes_per_day"];
     var allClassesHTML = "";
 
+    var hasHoverEffect = ""
+    if (!isTouchEnabled()) {
+        hasHoverEffect = " hasHoverEffect";
+    }
+
     for (var i = 0; i < data["classes"].length; i++) {
 
         var eachClass = data["classes"][i]
@@ -150,8 +155,8 @@ function renderClasses(data) {
                             </div>
 
                             <div>
-                                <input class = "timing-modifier" type = "submit" name = "add_timing" value = "Add Timing" onclick = "addTiming(this)">
-                                <input class = "timing-modifier" type = "submit" name = "remove_timing" value = "Remove Timing" onclick = "removeTiming(this)">
+                                <input class = "timing-modifier ${hasHoverEffect}" type = "submit" name = "add_timing" value = "Add Timing" onclick = "addTiming(this)">
+                                <input class = "timing-modifier ${hasHoverEffect}" type = "submit" name = "remove_timing" value = "Remove Timing" onclick = "removeTiming(this)">
                             </div>
 
                             <div class = "timings-input">
