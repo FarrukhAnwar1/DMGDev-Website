@@ -181,6 +181,11 @@ function addTiming(btn) {
     var specificClassIndex = Number(btn.parentNode.parentNode.id.match(/\d+$/)[0]);
     globalData["classes"][specificClassIndex]["timings"].push({"days": "", "start_time": "", "end_time": ""});
     renderClasses(globalData);
+
+    var isMobile = (/iPhone|iPod|iPad|Android|BlackBerry/).test(navigator.userAgent);
+    if (isMobile) {
+        navigator.vibrate(50);
+    }
 }
 
 function removeTiming(btn) {
@@ -188,6 +193,11 @@ function removeTiming(btn) {
     var specificClassIndex = Number(btn.parentNode.parentNode.id.match(/\d+$/)[0]);
     globalData["classes"][specificClassIndex]["timings"].pop();
     renderClasses(globalData);
+
+    var isMobile = (/iPhone|iPod|iPad|Android|BlackBerry/).test(navigator.userAgent);
+    if (isMobile) {
+        navigator.vibrate(50);
+    }
 }
 
 function sendData() {
