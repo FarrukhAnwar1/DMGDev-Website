@@ -255,11 +255,13 @@ function outputResult(result) {
         var days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 
         days.forEach(day => {
-            output += `<tr><th><h3 class = "dayheader">${day}</h3></th></tr><tr><td>`;
-            result["schedule_view"][day].forEach(eachClass => {
-                output += `<h3 class = "classheader">${eachClass["name"]}</h3><h4 class = "timingheader">${eachClass["start_time"]} - ${eachClass["end_time"]}</h4>`;
-            });
-            output += `</td></tr>`;
+            if (result["schedule_view"][day].length > 0) {
+                output += `<tr><th><h3 class = "dayheader">${day}</h3></th></tr><tr><td>`;
+                result["schedule_view"][day].forEach(eachClass => {
+                    output += `<h3 class = "classheader">${eachClass["name"]}</h3><h4 class = "timingheader">${eachClass["start_time"]} - ${eachClass["end_time"]}</h4>`;
+                });
+                output += `</td></tr>`;
+            }
         });
 
         output += `</table><h2 class = "scheduleheader">Total Time Between Classes</h2><h4 class = "timingheader">${result["total_time_between_classes"]}</h4>`;

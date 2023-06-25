@@ -13,11 +13,19 @@ class Class:
         self.class_name = class_name
         day_dictionary = {"M": "Monday", "T": "Tuesday", "W": "Wednesday", "R": "Thursday", "F": "Friday"}
         self.days = [day_dictionary[day] for day in days]
-        self.start_time = datetime(hour=int(start_time[:start_time.index(":")]),
-                                   minute=int(start_time[start_time.index(":") + 1:]), second=0, microsecond=0, day=1,
+
+        add_12_hours = 0
+        if "pm" in start_time.lower():
+            add_12_hours = 12
+        self.start_time = datetime(hour=int(start_time[:start_time.index(":")]) + add_12_hours,
+                                   minute=int(start_time[start_time.index(":") + 1:start_time.index(":") + 3]), second=0, microsecond=0, day=1,
                                    month=1, year=1)
-        self.end_time = datetime(hour=int(end_time[:end_time.index(":")]),
-                                 minute=int(end_time[end_time.index(":") + 1:]), second=0, microsecond=0, day=1,
+
+        add_12_hours = 0
+        if "pm" in end_time.lower():
+            add_12_hours = 12
+        self.end_time = datetime(hour=int(end_time[:end_time.index(":")]) + add_12_hours,
+                                 minute=int(end_time[end_time.index(":") + 1:end_time.index(":") + 3]), second=0, microsecond=0, day=1,
                                  month=1, year=1)
 
     def __str__(self):
