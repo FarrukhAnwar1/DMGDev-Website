@@ -66,8 +66,8 @@ class OptimalClassScheduler:
     @staticmethod
     def load_data(data):
         classes = []
-        preferred_max_time_between_classes = data["preferred_max_time_between_classes"] * 60 * 60
-        preferred_max_classes_per_day = data["preferred_max_classes_per_day"]
+        preferred_max_time_between_classes = float(data["preferred_max_time_between_classes"]) * 60 * 60
+        preferred_max_classes_per_day = int(data["preferred_max_classes_per_day"])
         for each_class in data["classes"]:
             same_class = []
             name = each_class["name"].rstrip()

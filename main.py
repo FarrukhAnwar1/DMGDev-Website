@@ -1,5 +1,5 @@
 import flask
-from flask import request, jsonify, render_template
+from flask import request, jsonify, render_template, make_response
 import clash
 import find_server_stats
 import optimal_class_scheduler
@@ -73,11 +73,19 @@ def class_scheduler():
     return render_template("class_scheduler_page.html")
 
 
-@app.route("/classscheduler/data", methods=["POST"])
+@app.route("/classscheduler/data", methods=["OPTIONS", "POST"])
 def class_scheduler_data():
+    if request.method == "OPTIONS":
+        response = make_response()
+        response.headers["Access-Control-Allow-Origin"] = "*"
+        response.headers["Access-Control-Allow-Methods"] = "POST"
+        response.headers["Access-Control-Allow-Headers"] = "Content-Type"
+        return response
     data = request.get_json()
     output = optimal_class_scheduler.main(data)
-    return jsonify(output)
+    response = make_response(jsonify(output))
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    return response
 
 
 if __name__ == "__main__":
