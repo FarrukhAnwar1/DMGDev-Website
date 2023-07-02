@@ -4,8 +4,6 @@ import { Link } from "react-scroll"
 
 function App() {
 
-  const outputDivRef = useRef(null);
-
   const [state, setState] = useState({
 
     "preferred_max_time_between_classes": 0,
