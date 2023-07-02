@@ -1,5 +1,5 @@
 import flask
-from flask import request, jsonify, render_template, make_response
+from flask import request, jsonify, render_template, make_response, send_from_directory
 import clash
 import find_server_stats
 import optimal_class_scheduler
@@ -86,6 +86,11 @@ def class_scheduler_data():
     response = make_response(jsonify(output))
     response.headers["Access-Control-Allow-Origin"] = "*"
     return response
+
+
+@app.route("/classschedulerreact")
+def class_scheduler_react():
+    return send_from_directory("static/React/class-scheduler-react/dist", "index.html")
 
 
 if __name__ == "__main__":
