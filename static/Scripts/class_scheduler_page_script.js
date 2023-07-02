@@ -284,7 +284,9 @@ function outputResult(result) {
 
     document.getElementById("output").innerHTML = output;
 
-    document.getElementById("generateScheduleButton").scrollIntoView({ behavior: 'smooth' });
+    $("html, body").animate({
+      scrollTop: $("#generateScheduleButton").offset().top
+    }, 1000);
 
 }
 
