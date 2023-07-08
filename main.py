@@ -4,6 +4,7 @@ import clash
 import find_server_stats
 import optimal_class_scheduler
 import traceback
+import youtube_dl
 
 app = flask.Flask(__name__)
 app.config["DEBUG"] = False
@@ -91,6 +92,27 @@ def class_scheduler_data():
 @app.route("/classschedulerreact")
 def class_scheduler_react():
     return send_from_directory("static/React/class-scheduler-react/dist", "index.html")
+
+
+@app.route("/get-audio-url", methods=["POST"])
+def get_audio_url():
+    if request.method == "OPTIONS":
+        response = make_response()
+        response.headers["Access-Control-Allow-Origin"] = "*"
+        response.headers["Access-Control-Allow-Methods"] = "POST"
+        response.headers["Access-Control-Allow-Headers"] = "Content-Type"
+        return response
+    video_id = request.get_json()["video_id"]
+    video_url = f"https://www.youtube.com/watch?v={video_id}"
+    ydl_opts = {
+        "format": "bestaudio/best"
+    }
+    with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+        info_dict = ydl.extract_info(video_url, download=False)
+        audio_url = info_dict["url"]
+    response = make_response(jsonify({"url": audio_url}))
+    response.headers["Access-Control-Allow-Origin"] = "*"
+    return response
 
 
 if __name__ == "__main__":
