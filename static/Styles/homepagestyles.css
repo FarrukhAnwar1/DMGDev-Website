@@ -83,3 +83,17 @@ a:visited{
     font-size: 35px !important;
     font-family: sans-serif;
 }
+
+#android-apps-title {
+    color: lime;
+    position: relative;
+    right: 15%;
+    font-size: 35px !important;
+    font-family: sans-serif;
+}
+
+#android-apps-text {
+    color: white;
+    font-size: 35px !important;
+    font-family: sans-serif;
+}
