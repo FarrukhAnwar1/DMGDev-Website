@@ -92,6 +92,10 @@ def class_scheduler_data():
 def class_scheduler_react():
     return send_from_directory("static/React/class-scheduler-react/dist", "index.html")
 
+@app.route("/classschedulervue")
+def class_scheduler_vue():
+    return send_from_directory("static/Vue/VueCourseScheduler/dist", "index.html")
+
 
 if __name__ == "__main__":
     app.run()

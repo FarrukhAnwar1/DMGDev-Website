@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 from itertools import product
+import traceback
 
 
 class Class:
@@ -155,6 +156,7 @@ def main(data):
         total_times_between_classes = OptimalClassScheduler.create_total_times_between_classes(
             sorted_and_non_conflicting_schedules, preferred_max_time_between_classes, preferred_max_classes_per_day)
         return OptimalClassScheduler.return_best_schedule(sorted_and_non_conflicting_schedules, total_times_between_classes)
-    except:
+    except Exception:
+        traceback.print_exc()
         output = {"code": 500, "message": "Internal server error"}
         return output

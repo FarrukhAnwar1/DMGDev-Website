@@ -70,17 +70,25 @@ a:visited{
     font-family: MinecraftiaRegular;
 }
 
-#college-title {
-    color: gold;
+#side-projects-title {
+    color: rgb(222,222,222);
     position: relative;
-    right: 19%;
+    right: 15%;
     font-size: 35px !important;
     font-family: sans-serif;
 }
 
-#college-text {
+.side-projects-subheading {
+    color: gold;
+    position: relative;
+    right: 5%;
+    font-size: 28px !important;
+    font-family: sans-serif;
+}
+
+.side-projects-text {
     color: white;
-    font-size: 35px !important;
+    font-size: 30px !important;
     font-family: sans-serif;
 }
 
