@@ -60,14 +60,7 @@ def find_match_percentages(player_matches, total_matches):
 
 
 def main(provided_player_tag):
-
-    try:
-        with open("api_token.txt") as f:
-            api_token = f.read().rstrip("\n")
-    except:
-        with open("mysite/api_token.txt") as f:
-            api_token = f.read().rstrip("\n")
-
+    api_token = get_api_token()
     max_level = 70
     player_tag = provided_player_tag
     url = f"https://api.clashroyale.com/v1/players/%23{player_tag}/battlelog"
@@ -195,3 +188,23 @@ def main(provided_player_tag):
     }}
 
     return data_to_return
+
+def get_api_token():
+    try:
+        with open("api_token.txt") as file:
+            return file.read().rstrip("\n")
+    except:
+        with open("mysite/api_token.txt") as file:
+            return file.read().rstrip("\n")
+
+def get_battles_data(player_tag):
+    url = f"https://api.clashroyale.com/v1/players/%23{player_tag}/battlelog"
+    headers = {"Authorization": "Bearer %s" % get_api_token()}
+    response = requests.request("GET", url, headers = headers)
+    return json.loads(response.content)
+
+def get_player_data(player_tag):
+    url = f"https://api.clashroyale.com/v1/players/%23{player_tag}"
+    headers = {"Authorization": "Bearer %s" % get_api_token()}
+    response = requests.request("GET", url, headers = headers)
+    return json.loads(response.content)

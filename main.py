@@ -1,5 +1,6 @@
 import flask
 from flask import request, jsonify, render_template, make_response, send_from_directory
+from flask_cors import CORS
 import clash
 import find_server_stats
 import optimal_class_scheduler
@@ -8,6 +9,7 @@ import traceback
 app = flask.Flask(__name__)
 app.config["DEBUG"] = False
 app.config["JSONIFY_MIMETYPE"] = "application/json; charset=utf-8"
+CORS(app)
 
 
 @app.route("/", methods=["GET"])
@@ -96,6 +98,17 @@ def class_scheduler_react():
 def class_scheduler_vue():
     return send_from_directory("static/Vue/VueCourseScheduler/dist", "index.html")
 
+@app.route("/api/crdata/battles")
+def get_battles_data():
+    player_tag = request.headers.get("playerTag")
+    output = clash.get_battles_data(player_tag)
+    return jsonify(output)
+
+@app.route("/api/crdata/player")
+def get_player_data():
+    player_tag = request.headers.get("playerTag")
+    output = clash.get_player_data(player_tag)
+    return jsonify(output)
 
 if __name__ == "__main__":
     app.run()
