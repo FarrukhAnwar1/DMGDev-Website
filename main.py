@@ -110,5 +110,9 @@ def get_player_data():
     output = clash.get_player_data(player_tag)
     return jsonify(output)
 
+@app.route("/vue-royale-stats")
+def vue_royal_stats():
+    return send_from_directory("static/Vue/VueRoyaleStats/dist", "index.html")
+
 if __name__ == "__main__":
     app.run()
