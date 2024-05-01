@@ -3,70 +3,78 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/minecraftia" type="text/css"/>
     <link rel="stylesheet" media="screen" type="text/css" href="{{ url_for('static',filename='Styles/homepagestyles.css') }}">
     <link rel="icon" href="{{ url_for('static',filename='Images/DMGDevLogo.png') }}">
     <script type="text/javascript" src="{{ url_for('static',filename='Scripts/homepagescript.js') }}"></script>
     <title>DMGDev</title>
   </head>
   <body style = "background-color: #222222">
-    <center>
+    <div style="text-align: center;">
       <img src="{{ url_for('static',filename='Images/DMGDevLogo.png') }}" alt="DMGDev Logo" width="300" height="300">
       <div id="maintitle">
         <h1>DMGDev</h1>
-        <h2 style = "font-size: 20px"><a href = "https://github.com/DMG1Plays/DMGDev-API-Endpoints" target="_blank">Source Code</a></h2>
+        <h2 style = "font-size: 20px"><a href = "https://github.com/FarrukhAnwar1/DMGDev-Website" target="_blank">Source Code</a></h2>
       </div>
-      <div id="clashroyaletitle">
-        <h2>Clash Royale</h2>
+      <div class = "subsection1">
+        <div id="clashroyaletitle">
+          <h2>Clash Royale</h2>
+        </div>
+        <div id="clashroyaletext">
+          <h3 style="font-size: 30px">Ladder Battles Endpoint:</h3>
+          <form onsubmit = "return false">
+                  <span style = "color: white">Enter Player Tag (no #):</span>
+                  <br><br>
+                  <label for="player_tag_input"></label>
+                  <input type = "text" name = "player_tag_input" id = "player_tag_input" class = "tag_input" placeholder = "Player Tag"> <input type = "reset" value = "Clear" class = "clear_button">
+                  <br><br>
+            <span style = "color: white">Response Type:</span>
+            <select title = "response_type_options" id = "response_type" name = "response_type">
+              <option value="vue">Vue</option>
+              <option value="html">HTML</option>
+              <option value="json">JSON</option>
+            </select>
+            <br><br>
+                  <input type = "submit" value = "Try it Out" onclick="search_player_data()" width="100" class = "try_it_out_button">
+          </form>
+        </div>
       </div>
-      <div id="clashroyaletext">
-        <h3 style="font-size: 30px">Ladder Battles Endpoint:</h3>
-        <form onsubmit = "return false">
-			    <span style = "color: white">Enter Player Tag (no #):</span>
-			    <br><br>
-			    <input type = "text" name = "player_tag_input"  id = "player_tag_input" class = "tag_input" placeholder = "Player Tag"> <input type = "reset" value = "Clear" class = "clear_button">
-			    <br><br>
-          <span style = "color: white">Response Type:</span>
-          <select title = "response_type_options" id = "response_type" name = "response_type">
-            <option value="vue">Vue</option>
-            <option value="html">HTML</option>
-            <option value="json">JSON</option>
-          </select>
-          <br><br>
-			    <input type = "submit" value = "Try it Out" onclick="search_player_data()" width="100" class = "try_it_out_button">
-        </form>
+      <div class = "subsection1">
+        <div id = "mctitle">
+          <h2>Minecraft</h2>
+        </div>
+        <div id = "mctext">
+          <a href = "{{ current_url }}mcserverstats" target = "_blank"><h3 style="font-size: 30px">Server Stats Website</h3></a>
+          <a href = "{{ current_url }}discordbots/serverstatus" target = "_blank"><h3 style="font-size: 30px">Server Status Discord Bot</h3></a>
+        </div>
       </div>
-      <div id = "mctitle">
-        <h2>Minecraft</h2>
+      <div class = "subsection1">
+        <div id = "side-projects-title">
+          <h2>Side Projects</h2>
+        </div>
+        <div class = "side-projects-subheading">
+          <h2>Course Scheduler</h2>
+        </div>
+        <div class = "side-projects-text">
+          <a href = "{{ current_url }}classschedulervue" target = "_blank"><h3>Vue</h3></a>
+          <a href = "{{ current_url }}classschedulerreact" target = "_blank"><h3>React</h3></a>
+          <a href = "{{ current_url }}classscheduler" target = "_blank"><h3>No Framework</h3></a>
+        </div>
+        <div class = "side-projects-subheading">
+          <h2>VuePosts</h2>
+        </div>
+        <div class = "side-projects-text">
+          <a href = "https://farrukhanwar1.github.io/VuePosts/" target = "_blank"><h3>Page</h3></a>
+          <a href = "https://github.com/FarrukhAnwar1/VuePosts" target = "_blank"><h3>Source Code</h3></a>
+        </div>
       </div>
-      <div id = "mctext">
-        <a href = "{{ current_url }}mcserverstats" target = "_blank"><h3 style="font-size: 30px">Server Stats Website</h3></a>
-        <a href = "{{ current_url }}discordbots/serverstatus" target = "_blank"><h3 style="font-size: 30px">Server Status Discord Bot</h3></a>
+      <div class = "subsection1">
+        <div id = "android-apps-title">
+          <h2>Android Apps</h2>
+        </div>
+        <div id = "android-apps-text">
+          <a href = "https://github.com/FarrukhAnwar1/WorkoutRecorderApp" target = "_blank"><h3 style="font-size: 30px">Workout Recorder</h3></a>
+        </div>
       </div>
-      <div id = "side-projects-title">
-        <h2>Side Projects</h2>
-      </div>
-      <div class = "side-projects-subheading">
-        <h2>Course Scheduler</h2>
-      </div>
-      <div class = "side-projects-text">
-        <a href = "{{ current_url }}classschedulervue" target = "_blank"><h3>Vue</h3></a>
-        <a href = "{{ current_url }}classschedulerreact" target = "_blank"><h3>React</h3></a>
-        <a href = "{{ current_url }}classscheduler" target = "_blank"><h3>No Framework</h3></a>
-      </div>
-      <div class = "side-projects-subheading" style = "right: 9%">
-        <h2>VuePosts</h2>
-      </div>
-      <div class = "side-projects-text">
-        <a href = "https://dmg1plays.github.io/VuePosts/" target = "_blank"><h3>Page</h3></a>
-        <a href = "https://github.com/DMG1Plays/VuePosts/" target = "_blank"><h3>Source Code</h3></a>
-      </div>
-      <div id = "android-apps-title">
-        <h2>Android Apps</h2>
-      </div>
-      <div id = "android-apps-text">
-        <a href = "https://github.com/DMG1Plays/WorkoutRecorderApp" target = "_blank"><h3 style="font-size: 30px">Workout Recorder</h3></a>
-      </div>
-    </center>
+    </div>
   </body>
 </html>
