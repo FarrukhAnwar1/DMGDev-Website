@@ -36,8 +36,8 @@ def win_api():
             traceback.print_exc()
             return "An error occurred while retrieving data. Check to see if the player tag was entered correctly. If "\
                    "that doesn't work, open an issue on the Source Code GitHub issue page (" \
-                   "https://github.com/DMG1Plays/DMGDev-API-Endpoints/issues) to see if the server admin can fix the " \
-                   "issue."
+                   "https://github.com/FarrukhAnwar1/DMGDev-Website/issues) to see if the server admin can fix " \
+                   "the issue."
     elif html:
         try:
             data_to_return = clash.main(player_tag)

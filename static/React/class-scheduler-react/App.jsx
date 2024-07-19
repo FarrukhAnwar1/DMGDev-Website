@@ -84,7 +84,7 @@ function App() {
 
   function generateBestSchedule() {
     
-    const targetURL = "https://dmg1plays.pythonanywhere.com/classscheduler/data";
+    const targetURL = "https://farrukhanwar.pythonanywhere.com/classscheduler/data";
 
     fetch(targetURL, {
       method: "POST",
