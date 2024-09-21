@@ -121,7 +121,10 @@ def main(provided_player_tag):
                 did_win = False
 
             if not found_name:
-                player_name = battle["team"][0]["name"]
+                if battle["team"][0]["tag"] == f"#{player_tag}":
+                    player_name = battle["team"][0]["name"]
+                else:
+                    player_name = battle["team"][1]["name"]
                 found_name = True
 
             battle_stats = [opponent_level, did_win]
@@ -139,7 +142,10 @@ def main(provided_player_tag):
                 pol_battles_won += 1
 
             if not found_name:
-                player_name = battle["team"][0]["name"]
+                if battle["team"][0]["tag"] == f"#{player_tag}":
+                    player_name = battle["team"][0]["name"]
+                else:
+                    player_name = battle["team"][1]["name"]
                 found_name = True
 
             player_cards = battle["team"][0]["cards"]
