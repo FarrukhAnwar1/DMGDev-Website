@@ -3,7 +3,7 @@ import json
 
 
 def find_opponent_level(tag, request_headers):
-    player_url = f"https://api.clashroyale.com/v1/players/%23{tag}"
+    player_url = f"https://api.clashroyale.com/v1/players/%23{clean_player_tag(tag)}"
     opponent_response = requests.request("GET", player_url, headers=request_headers)
     opponent = json.loads(opponent_response.content)
     found_opponent_level = opponent["expLevel"]
@@ -59,10 +59,14 @@ def find_match_percentages(player_matches, total_matches):
     return matches
 
 
+def clean_player_tag(player_tag):
+    return str(player_tag).strip().replace("#", "")
+
+
 def main(provided_player_tag):
     api_token = get_api_token()
     max_level = 70
-    player_tag = provided_player_tag
+    player_tag = clean_player_tag(provided_player_tag)
     url = f"https://api.clashroyale.com/v1/players/%23{player_tag}/battlelog"
     headers = {"Authorization": "Bearer %s" % api_token}
 
@@ -111,7 +115,7 @@ def main(provided_player_tag):
     for battle in battles:
         if battle["type"] == "PvP":
             total_battles += 1
-            opponent_tag = battle["opponent"][0]["tag"][1:]
+            opponent_tag = clean_player_tag(battle["opponent"][0]["tag"][1:])
             opponent_level = find_opponent_level(opponent_tag, headers)
             match_percentages[opponent_level - 1] += 1
 
@@ -195,22 +199,25 @@ def main(provided_player_tag):
 
     return data_to_return
 
+
 def get_api_token():
     try:
         with open("api_token.txt") as file:
             return file.read().rstrip("\n")
-    except:
+    except Exception as _:
         with open("mysite/api_token.txt") as file:
             return file.read().rstrip("\n")
 
+
 def get_battles_data(player_tag):
-    url = f"https://api.clashroyale.com/v1/players/%23{player_tag}/battlelog"
+    url = f"https://api.clashroyale.com/v1/players/%23{clean_player_tag(player_tag)}/battlelog"
     headers = {"Authorization": "Bearer %s" % get_api_token()}
     response = requests.request("GET", url, headers = headers)
     return json.loads(response.content)
 
+
 def get_player_data(player_tag):
-    url = f"https://api.clashroyale.com/v1/players/%23{player_tag}"
+    url = f"https://api.clashroyale.com/v1/players/%23{clean_player_tag(player_tag)}"
     headers = {"Authorization": "Bearer %s" % get_api_token()}
     response = requests.request("GET", url, headers = headers)
     return json.loads(response.content)
