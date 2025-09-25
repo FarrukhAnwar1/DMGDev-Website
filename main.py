@@ -94,9 +94,11 @@ def class_scheduler_data():
 def class_scheduler_react():
     return send_from_directory("static/React/class-scheduler-react/dist", "index.html")
 
+
 @app.route("/classschedulervue")
 def class_scheduler_vue():
     return send_from_directory("static/Vue/VueCourseScheduler/dist", "index.html")
+
 
 @app.route("/api/crdata/battles")
 def get_battles_data():
@@ -104,15 +106,18 @@ def get_battles_data():
     output = clash.get_battles_data(player_tag)
     return jsonify(output)
 
+
 @app.route("/api/crdata/player")
 def get_player_data():
     player_tag = request.headers.get("playerTag")
     output = clash.get_player_data(player_tag)
     return jsonify(output)
 
+
 @app.route("/vue-royale-stats")
 def vue_royal_stats():
     return send_from_directory("static/Vue/VueRoyaleStats/dist", "index.html")
+
 
 if __name__ == "__main__":
     app.run()

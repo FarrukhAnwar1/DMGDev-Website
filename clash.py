@@ -60,7 +60,7 @@ def find_match_percentages(player_matches, total_matches):
 
 
 def clean_player_tag(player_tag):
-    return str(player_tag).strip().replace("#", "")
+    return str(player_tag).upper().strip().replace("#", "")
 
 
 def main(provided_player_tag):
