@@ -45,6 +45,7 @@ def win_api():
         except Exception:
             traceback.print_exc()
             return render_template("errorpage.html")
+    return None
 
 
 @app.route("/discordbots/serverstatus", methods=["GET"])
