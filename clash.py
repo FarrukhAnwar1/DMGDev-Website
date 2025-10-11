@@ -113,7 +113,7 @@ def main(provided_player_tag):
     pol_has_battled = False
 
     for battle in battles:
-        if battle["type"] == "PvP":
+        if battle["type"] == "trail" and battle["gameMode"] is not None and battle["gameMode"]["name"] == "Ladder":
             total_battles += 1
             opponent_tag = clean_player_tag(battle["opponent"][0]["tag"][1:])
             opponent_level = find_opponent_level(opponent_tag, headers)
