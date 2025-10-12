@@ -1,0 +1,33 @@
+name: Deploy to PythonAnywhere
+
+on:
+  push:
+    branches:
+      - master  # change if you use another branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout latest code
+        uses: actions/checkout@v4
+
+      - name: Pull latest code and reload on PythonAnywhere
+        env:
+          PA_USERNAME: ${{ secrets.PA_USERNAME }}
+          PA_TOKEN: ${{ secrets.PA_TOKEN }}
+          PA_CONSOLE_ID: ${{ secrets.PA_CONSOLE_ID }}
+          PA_DOMAIN: ${{ secrets.PA_DOMAIN }}
+        run: |
+          echo "Triggering git pull in PythonAnywhere console..."
+          curl -X POST \
+            -H "Authorization: Token ${PA_TOKEN}" \
+            -H "Content-Type: application/json" \
+            -d '{"input": "git pull origin master\n"}' \
+            "https://www.pythonanywhere.com/api/v0/user/${PA_USERNAME}/consoles/${PA_CONSOLE_ID}/send_input/"
+
+          echo "Reloading web app..."
+          curl -X POST \
+            -H "Authorization: Token ${PA_TOKEN}" \
+            "https://www.pythonanywhere.com/api/v0/user/${PA_USERNAME}/webapps/${PA_DOMAIN}/reload/"
