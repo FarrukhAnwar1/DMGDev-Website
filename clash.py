@@ -213,7 +213,11 @@ def get_battles_data(player_tag):
     url = f"https://api.clashroyale.com/v1/players/%23{clean_player_tag(player_tag)}/battlelog"
     headers = {"Authorization": "Bearer %s" % get_api_token()}
     response = requests.request("GET", url, headers = headers)
-    return json.loads(response.content)
+    battles = json.loads(response.content)
+    for battle in battles:
+        if battle["type"] == "trail" and battle["gameMode"] is not None and battle["gameMode"]["name"] == "Ladder":
+            battle["type"] = "PvP"
+    return battles
 
 
 def get_player_data(player_tag):
