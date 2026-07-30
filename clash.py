@@ -161,7 +161,7 @@ def main(provided_player_tag):
 
     if total_battles != 0:
         has_battled = True
-        for i in range(max_level):
+        for i in range(max_account_level):
             win_percentages.append(win_percentage(ladder_battles, i + 1))
 
         ladder_win_percentage = overall_win_percentage(ladder_battles)
@@ -171,8 +171,8 @@ def main(provided_player_tag):
     else:
         ladder_win_percentage = "N/A"
         average_difference = "N/A"
-        match_numbers = [0] * max_level
-        win_percentages = match_percentages = ["N/A"] * max_level
+        match_numbers = [0] * max_account_level
+        win_percentages = match_percentages = ["N/A"] * max_account_level
 
     if pol_total_battles != 0:
         pol_has_battled = True
