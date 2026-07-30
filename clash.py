@@ -25,9 +25,10 @@ def win_percentage(player_battles, level):
 
 
 def find_card_levels(cards):
+    max_card_level = 16
     total_card_levels = 0
     for card in cards:
-        total_card_levels += card["level"] + (15 - card["maxLevel"])
+        total_card_levels += card["level"] + (max_card_level - card["maxLevel"])
     return total_card_levels
 
 
@@ -65,7 +66,7 @@ def clean_player_tag(player_tag):
 
 def main(provided_player_tag):
     api_token = get_api_token()
-    max_level = 70
+    max_account_level = 90
     player_tag = clean_player_tag(provided_player_tag)
     url = f"https://api.clashroyale.com/v1/players/%23{player_tag}/battlelog"
     headers = {"Authorization": "Bearer %s" % api_token}
@@ -98,7 +99,7 @@ def main(provided_player_tag):
     player_levels_list = []
     opponent_levels_list = []
     ladder_battles = []
-    match_percentages = [0] * max_level
+    match_percentages = [0] * max_account_level
     total_battles = 0
     found_name = False
     player_name = None
